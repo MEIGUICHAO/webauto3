@@ -6,13 +6,19 @@ package com.example.webtest.base;
 
 public interface ConstantValue {
     public int autoSame30 = 25;
-    public int autoSame20 = 35;
-    public int autoSame15 = 42;
-    public int autoSame10 = 52;
+//    public int autoSame20 = 35;
+//    public int autoSame15 = 42;
+//    public int autoSame10 = 52;
+    public int autoSame20 = 15;
+    public int autoSame15 = 18;
+    public int autoSame10 = 20;
 
-    public int autoCustomSame20 = 26;
-    public int autoCustomSame15 = 28;
-    public int autoCustomSame10 = 30;
+//    public int autoCustomSame20 = 26;
+//    public int autoCustomSame15 = 28;
+//    public int autoCustomSame10 = 30;
+    public int autoCustomSame20 = 20;
+    public int autoCustomSame15 = 22;
+    public int autoCustomSame10 = 24;
 //    public int autoCustomSame20 = 16;
 //    public int autoCustomSame15 = 18;
 //    public int autoCustomSame10 = 20;

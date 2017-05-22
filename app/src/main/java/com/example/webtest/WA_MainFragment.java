@@ -1864,14 +1864,18 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 
         }
 
-        setCustomDealData(ConstantValue.autoCustomSame20 + "", ConstantValue.autoCustomSame15 + "", ConstantValue.autoCustomSame10 + "", true, ConstantValue.CustomCoordinate);
-        delayDeal(ConstantUtils.autoBlank20, ConstantUtils.autoSame20, ConstantValue.TYPE_BLANK_20, 0);
-        delayDeal(ConstantUtils.autoBlank15, ConstantUtils.autoSame15, ConstantValue.TYPE_BLANK_15, 16);
-        delayDeal(ConstantUtils.autoBlank10, ConstantUtils.autoSame10, ConstantValue.TYPE_BLANK_10, 32);
-        setDealData(38);
-        delayDeal(ConstantValue.autoBlank20, ConstantValue.autoSame20, ConstantValue.TYPE_BLANK_20, 40);
-        delayDeal(ConstantValue.autoBlank15, ConstantValue.autoSame15, ConstantValue.TYPE_BLANK_15, 56);
-        delayDeal(ConstantValue.autoBlank10, ConstantValue.autoSame10, ConstantValue.TYPE_BLANK_10, 72);
+//        setCustomDealData(ConstantValue.autoCustomSame20 + "", ConstantValue.autoCustomSame15 + "", ConstantValue.autoCustomSame10 + "", true, ConstantValue.CustomCoordinate);
+//        delayDeal(ConstantUtils.autoBlank20, ConstantUtils.autoSame20, ConstantValue.TYPE_BLANK_20, 0);
+//        delayDeal(ConstantUtils.autoBlank15, ConstantUtils.autoSame15, ConstantValue.TYPE_BLANK_15, 16);
+//        delayDeal(ConstantUtils.autoBlank10, ConstantUtils.autoSame10, ConstantValue.TYPE_BLANK_10, 32);
+        setDealData(0);
+        delayDeal(ConstantValue.autoBlank20, ConstantValue.autoSame20, ConstantValue.TYPE_BLANK_20, 0);
+        delayDeal(ConstantValue.autoBlank15, ConstantValue.autoSame15, ConstantValue.TYPE_BLANK_15, 16);
+        delayDeal(ConstantValue.autoBlank10, ConstantValue.autoSame10, ConstantValue.TYPE_BLANK_10, 32);
+//        setDealData(38);
+//        delayDeal(ConstantValue.autoBlank20, ConstantValue.autoSame20, ConstantValue.TYPE_BLANK_20, 40);
+//        delayDeal(ConstantValue.autoBlank15, ConstantValue.autoSame15, ConstantValue.TYPE_BLANK_15, 56);
+//        delayDeal(ConstantValue.autoBlank10, ConstantValue.autoSame10, ConstantValue.TYPE_BLANK_10, 72);
 
     }
 
