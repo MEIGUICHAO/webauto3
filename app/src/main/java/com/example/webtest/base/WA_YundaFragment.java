@@ -272,7 +272,7 @@ public class WA_YundaFragment extends WA_BaseFragment {
                                 sameInt = ConstantUtils.autoSame10;
                                 break;
                         }
-                        myAmount = (Integer.parseInt(splitAmount2[2]) - Integer.parseInt(splitAmount[2])) > 0 ? getCustomAmount(Integer.parseInt(splitAmount[2]), sameInt) : getCustomAmount(Integer.parseInt(splitAmount2[2]), sameInt);
+                        myAmount = (Integer.parseInt(splitAmount2[2]) - Integer.parseInt(splitAmount[2])) > 0 ? getCustomAmount(Integer.parseInt(splitAmount[2]), typeBlank) : getCustomAmount(Integer.parseInt(splitAmount2[2]), typeBlank);
                     }
                 } else {
 
@@ -351,6 +351,7 @@ public class WA_YundaFragment extends WA_BaseFragment {
         } catch (Exception e) {
 
             Log.e(TAG, "exception!!!: anInt" + anInt);
+            Log.e(TAG, "sameInt!!!: sameInt" + sameInt);
             Log.e(TAG, "exception!!!: typeBlank" + typeBlank);
 //             Log.e(TAG, "exception!!!: anInt" + anInt);
 //            Log.e(TAG, "exception!!!: typeBlank" + typeBlank);
