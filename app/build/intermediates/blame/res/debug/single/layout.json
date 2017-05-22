@@ -1,0 +1,34 @@
+[
+    {
+        "merged": "E:\\Users\\MGC\\Downloads\\webauto 2\\app\\build\\intermediates\\res\\merged\\debug\\layout\\wa_fragment_main.xml",
+        "source": "E:\\Users\\MGC\\Downloads\\webauto 2\\app\\src\\main\\res\\layout\\wa_fragment_main.xml"
+    },
+    {
+        "merged": "E:\\Users\\MGC\\Downloads\\webauto 2\\E:\\Users\\MGC\\Downloads\\webauto\\app\\build\\intermediates\\res\\merged\\debug\\layout\\wa_fragment_main.xml",
+        "source": "E:\\Users\\MGC\\Downloads\\webauto 2\\E:\\Users\\MGC\\Downloads\\webauto\\app\\src\\main\\res\\layout\\wa_fragment_main.xml"
+    },
+    {
+        "merged": "E:\\Users\\MGC\\Downloads\\webauto 2\\E:\\things\\webauto\\app\\build\\intermediates\\res\\merged\\debug\\layout\\wa_fragment_main.xml",
+        "source": "E:\\Users\\MGC\\Downloads\\webauto 2\\E:\\things\\webauto\\app\\src\\main\\res\\layout\\wa_fragment_main.xml"
+    },
+    {
+        "merged": "E:\\Users\\MGC\\Downloads\\webauto 2\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_main.xml",
+        "source": "E:\\Users\\MGC\\Downloads\\webauto 2\\app\\src\\main\\res\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "E:\\Users\\MGC\\Downloads\\webauto 2\\E:\\Users\\MGC\\Downloads\\webauto\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_main.xml",
+        "source": "E:\\Users\\MGC\\Downloads\\webauto 2\\E:\\Users\\MGC\\Downloads\\webauto\\app\\src\\main\\res\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "E:\\Users\\MGC\\Downloads\\webauto 2\\E:\\things\\webauto\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_main.xml",
+        "source": "E:\\Users\\MGC\\Downloads\\webauto 2\\E:\\things\\webauto\\app\\src\\main\\res\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "E:\\things\\webauto 2\\app\\build\\intermediates\\res\\merged\\debug\\layout\\wa_fragment_main.xml",
+        "source": "E:\\things\\webauto 2\\app\\src\\main\\res\\layout\\wa_fragment_main.xml"
+    },
+    {
+        "merged": "E:\\things\\webauto 2\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_main.xml",
+        "source": "E:\\things\\webauto 2\\app\\src\\main\\res\\layout\\activity_main.xml"
+    }
+]
