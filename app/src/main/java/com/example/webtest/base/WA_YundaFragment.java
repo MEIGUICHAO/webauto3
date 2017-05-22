@@ -338,9 +338,14 @@ public class WA_YundaFragment extends WA_BaseFragment {
 
 
         if (fiboArr == null) {
-            fiboArr = new int[10];
+            fiboArr = new int[14];
             fiboArr[0] = fiboArr[1] = 1;
-            for (int i = 2; i < fiboArr.length; i++) {
+            for (int i = 2; i < 7; i++) {
+                fiboArr[i] = fiboArr[i - 1] + fiboArr[i - 2];
+            }
+
+            fiboArr[7] = fiboArr[8] = 1;
+            for (int i = 9; i < fiboArr.length; i++) {
                 fiboArr[i] = fiboArr[i - 1] + fiboArr[i - 2];
             }
         }
