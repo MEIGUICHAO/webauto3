@@ -1864,66 +1864,32 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 
         }
 
-        setCustomDealData(ConstantValue.autoCustomSame20 + "", ConstantValue.autoCustomSame15 + "", ConstantValue.autoCustomSame10 + "", true,ConstantValue.CustomCoordinate);
-        dealType(0, ConstantUtils.autoBlank20, ConstantUtils.autoSame20, ConstantValue.TYPE_BLANK_20);
+        setCustomDealData(ConstantValue.autoCustomSame20 + "", ConstantValue.autoCustomSame15 + "", ConstantValue.autoCustomSame10 + "", true, ConstantValue.CustomCoordinate);
+        delayDeal(ConstantUtils.autoBlank20, ConstantUtils.autoSame20, ConstantValue.TYPE_BLANK_20, 0);
+        delayDeal(ConstantUtils.autoBlank15, ConstantUtils.autoSame15, ConstantValue.TYPE_BLANK_15, 16);
+        delayDeal(ConstantUtils.autoBlank10, ConstantUtils.autoSame10, ConstantValue.TYPE_BLANK_10, 32);
         UIUtils.postDelayed(new Runnable() {
             @Override
             public void run() {
-                dealType(0, ConstantUtils.autoBlank15, ConstantUtils.autoSame15, ConstantValue.TYPE_BLANK_15);
+                setCustomDealData(ConstantValue.autoSame20 + "", ConstantValue.autoSame15 + "", ConstantValue.autoSame10 + "", false, ConstantValue.ClassCoordinate);
             }
-        }, 16000);
-        UIUtils.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                dealType(0, ConstantUtils.autoBlank10, ConstantUtils.autoSame10, ConstantValue.TYPE_BLANK_10);
-            }
-        }, 32000);
-
-//        setCustomDealData(ConstantValue.autoSame20 + "", ConstantValue.autoSame15 + "", ConstantValue.autoSame10 + "", false,ConstantValue.ClassCoordinate);
-//        dealType(0, ConstantUtils.autoBlank20, ConstantUtils.autoSame20, ConstantValue.TYPE_BLANK_20);
-//        UIUtils.postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//                dealType(0, ConstantUtils.autoBlank15, ConstantUtils.autoSame15, ConstantValue.TYPE_BLANK_15);
-//            }
-//        }, 16000);
-//        UIUtils.postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//                dealType(0, ConstantUtils.autoBlank10, ConstantUtils.autoSame10, ConstantValue.TYPE_BLANK_10);
-//            }
-//        }, 32000);
-//
-//        UIUtils.postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//
-//                setCustomDealData(ConstantValue.autoCustomSame20 + "", ConstantValue.autoCustomSame15 + "", ConstantValue.autoCustomSame10 + "", true,ConstantValue.CustomCoordinate);
-//            }
-//        }, 38000);
-//        UIUtils.postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//                dealType(0, ConstantUtils.autoBlank20, ConstantUtils.autoSame20, ConstantValue.TYPE_BLANK_20);
-//            }
-//        }, 40000);
-//        UIUtils.postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//                dealType(0, ConstantUtils.autoBlank15, ConstantUtils.autoSame15, ConstantValue.TYPE_BLANK_15);
-//            }
-//        }, 56000);
-//        UIUtils.postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//                dealType(0, ConstantUtils.autoBlank10, ConstantUtils.autoSame10, ConstantValue.TYPE_BLANK_10);
-//            }
-//        }, 72000);
-
+        }, 38000);
+        delayDeal(ConstantUtils.autoBlank20, ConstantUtils.autoSame20, ConstantValue.TYPE_BLANK_20, 40);
+        delayDeal(ConstantUtils.autoBlank15, ConstantUtils.autoSame15, ConstantValue.TYPE_BLANK_15, 56);
+        delayDeal(ConstantUtils.autoBlank10, ConstantUtils.autoSame10, ConstantValue.TYPE_BLANK_10, 72);
 
     }
 
-    private void setCustomDealData(String num, String num2, String num3, boolean custom,int coordinate) {
+    private void delayDeal(final int blank,final int samem,final int type,int time) {
+        UIUtils.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                dealType(0, blank, samem, type);
+            }
+        }, time * 1000);
+    }
+
+    private void setCustomDealData(String num, String num2, String num3, boolean custom, int coordinate) {
         ConstantUtils.setAutoSame20(num);
         ConstantUtils.setAutoSame15(num2);
         ConstantUtils.setAutoSame10(num3);
@@ -1959,7 +1925,6 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
             }
         }, 5000 + time);
     }
-
 
 
     private String[] sortList(ArrayList<String> sameList, int[] arr) {

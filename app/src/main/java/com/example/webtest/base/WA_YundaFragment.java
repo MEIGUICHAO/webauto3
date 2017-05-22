@@ -228,25 +228,22 @@ public class WA_YundaFragment extends WA_BaseFragment {
 
         int[] smarllerInts = sortIntList(smallerList);
 
-//
-//        if (ConstantUtils.isCUSTOM()) {
-//            getCustomAmount(buylist, typeBlank);
-//        }
         if (buyPositionList.size() > 0) {
-            getMethod(buyPositionList, amount, "0", IS_Auto, typeBlank, smarllerInts[smarllerInts.length - 2]);
-//			logicStr = logicStr+"commitData(500);";
+            if (ConstantUtils.isCUSTOM()) {
+                getMethod(buyPositionList, amount, "0", IS_Auto, typeBlank, smarllerInts[smarllerInts.length - 2]);
+            } else {
+                getMethod(buyPositionList, amount, "0", IS_Auto, typeBlank, 0);
+            }
             logicStr = logicStr + "commitData(1000);";
         }
         if (buyNumList.size() > 0) {
-//			getMethod(buyNumList, amount,"2200");
-//			logicStr = logicStr+"commitData(2700);";
-            getMethod(buyNumList, amount, "3500", IS_Auto, typeBlank, smarllerInts[smarllerInts.length - 2]);
+            if (ConstantUtils.isCUSTOM()) {
+                getMethod(buyNumList, amount, "3500", IS_Auto, typeBlank, smarllerInts[smarllerInts.length - 2]);
+            } else {
+                getMethod(buyNumList, amount, "3500", IS_Auto, typeBlank, 0);
+            }
             logicStr = logicStr + "commitData(4500);";
         }
-//        if (buyDifList.size() > 0) {
-//            getMethod(buyDifList, amount, "7000", IS_Auto, typeBlank);
-//            logicStr = logicStr + "commitData(8000);";
-//        }
         String completeJs = doAutoTest(logicStr);
         loadUrl(webView, completeJs);
     }
@@ -275,7 +272,7 @@ public class WA_YundaFragment extends WA_BaseFragment {
                                 sameInt = ConstantUtils.autoSame10;
                                 break;
                         }
-                        myAmount = (Integer.parseInt(splitAmount2[2]) - Integer.parseInt(splitAmount[2])) > 0 ? getLotteryAmount(Integer.parseInt(splitAmount[2]), sameInt) : getLotteryAmount(Integer.parseInt(splitAmount2[2]), sameInt);
+                        myAmount = (Integer.parseInt(splitAmount2[2]) - Integer.parseInt(splitAmount[2])) > 0 ? getCustomAmount(Integer.parseInt(splitAmount[2]), sameInt) : getCustomAmount(Integer.parseInt(splitAmount2[2]), sameInt);
                     }
                 } else {
 
@@ -344,7 +341,7 @@ public class WA_YundaFragment extends WA_BaseFragment {
                 fiboArr[i] = fiboArr[i - 1] + fiboArr[i - 2];
             }
 
-            fiboArr[7] = fiboArr[8] = 1;
+            fiboArr[7] = fiboArr[8] = 3;
             for (int i = 9; i < fiboArr.length; i++) {
                 fiboArr[i] = fiboArr[i - 1] + fiboArr[i - 2];
             }
