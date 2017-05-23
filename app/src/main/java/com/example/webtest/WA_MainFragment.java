@@ -1865,13 +1865,16 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
         }
 
 //        setCustomDealData(ConstantValue.autoCustomSame20 + "", ConstantValue.autoCustomSame15 + "", ConstantValue.autoCustomSame10 + "", true, ConstantValue.CustomCoordinate);
-//        delayDeal(ConstantUtils.autoBlank20, ConstantUtils.autoSame20, ConstantValue.TYPE_BLANK_20, 0);
-//        delayDeal(ConstantUtils.autoBlank15, ConstantUtils.autoSame15, ConstantValue.TYPE_BLANK_15, 16);
-//        delayDeal(ConstantUtils.autoBlank10, ConstantUtils.autoSame10, ConstantValue.TYPE_BLANK_10, 32);
-        setDealData(0);
+
+        setDealData(0,ConstantValue.autoSame20 + "", ConstantValue.autoSame15 + "", ConstantValue.autoSame10 + "", false, ConstantValue.ClassCoordinate);
         delayDeal(ConstantValue.autoBlank20, ConstantValue.autoSame20, ConstantValue.TYPE_BLANK_20, 0);
         delayDeal(ConstantValue.autoBlank15, ConstantValue.autoSame15, ConstantValue.TYPE_BLANK_15, 16);
         delayDeal(ConstantValue.autoBlank10, ConstantValue.autoSame10, ConstantValue.TYPE_BLANK_10, 32);
+        setDealData(48, ConstantValue.autoCustomSame20 + "", ConstantValue.autoCustomSame15 + "", ConstantValue.autoCustomSame10 + "", true, ConstantValue.CustomCoordinate);
+        delayDeal(ConstantUtils.autoBlank20, ConstantUtils.autoSame20, ConstantValue.TYPE_BLANK_20, 50);
+        delayDeal(ConstantUtils.autoBlank15, ConstantUtils.autoSame15, ConstantValue.TYPE_BLANK_15, 66);
+        delayDeal(ConstantUtils.autoBlank10, ConstantUtils.autoSame10, ConstantValue.TYPE_BLANK_10, 82);
+
 //        setDealData(38);
 //        delayDeal(ConstantValue.autoBlank20, ConstantValue.autoSame20, ConstantValue.TYPE_BLANK_20, 40);
 //        delayDeal(ConstantValue.autoBlank15, ConstantValue.autoSame15, ConstantValue.TYPE_BLANK_15, 56);
@@ -1879,11 +1882,11 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 
     }
 
-    private void setDealData(int time) {
+    private void setDealData(int time, final String same20, final String same15, final String same10, final boolean iscustom, final int coordinate) {
         UIUtils.postDelayed(new Runnable() {
             @Override
             public void run() {
-                setCustomDealData(ConstantValue.autoSame20 + "", ConstantValue.autoSame15 + "", ConstantValue.autoSame10 + "", false, ConstantValue.ClassCoordinate);
+                setCustomDealData(same20 + "", same15 + "", same10 + "", iscustom, coordinate);
             }
         }, time * 1000);
     }
