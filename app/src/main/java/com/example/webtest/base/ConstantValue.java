@@ -9,16 +9,16 @@ public interface ConstantValue {
 //    public int autoSame20 = 35;
 //    public int autoSame15 = 42;
 //    public int autoSame10 = 52;
-    public int autoSame20 = 22;
+    public int autoSame20 = 20;
     public int autoSame15 = 25;
-    public int autoSame10 = 28;
+    public int autoSame10 = 30;
 
 //    public int autoCustomSame20 = 26;
 //    public int autoCustomSame15 = 28;
 //    public int autoCustomSame10 = 30;
-    public int autoCustomSame20 = 15;
-    public int autoCustomSame15 = 18;
-    public int autoCustomSame10 = 20;
+    public int autoCustomSame20 = 27;
+    public int autoCustomSame15 = 34;
+    public int autoCustomSame10 = 40;
 //    public int autoCustomSame20 = 16;
 //    public int autoCustomSame15 = 18;
 //    public int autoCustomSame10 = 20;
@@ -42,8 +42,8 @@ public interface ConstantValue {
 
 
 //    public String webUrl = "https://www.sx67.com/";
-//    public String webUrl = "https://www.sx67.com/mobile/#home/";
-    public String webUrl = "https://www.baidu.com";
+    public String webUrl = "https://www.sx67.com/mobile/#home/";
+//    public String webUrl = "https://www.baidu.com";
 
 
 }
