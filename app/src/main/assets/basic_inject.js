@@ -24,12 +24,20 @@ function goSc(){
   setTimeout(function(){
     var oneTenBtn = document.getElementById('cate_menus_50').getElementsByTagName("a")[1];
     oneTenBtn.click();
+  },200)
+  setTimeout(function(){
+    var oneTenBtn = document.getElementById('cate_menus_50').getElementsByTagName("a")[1];
+    oneTenBtn.click();
   },500)
 }
 
 function goFt(){
   var scBtn = document.getElementById('homeMenus').getElementsByTagName("a")[1];
   scBtn.click();
+  setTimeout(function(){
+    var oneTenBtn = document.getElementById('cate_menus_55').getElementsByTagName("a")[1];
+    oneTenBtn.click();
+  },200)
   setTimeout(function(){
     var oneTenBtn = document.getElementById('cate_menus_55').getElementsByTagName("a")[1];
     oneTenBtn.click();
