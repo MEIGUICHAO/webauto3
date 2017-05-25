@@ -992,6 +992,8 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
                     buyNumList.add(sortStr[j]);
                 }
             }
+//            if ((mInts[length - 1] - mInts[length - 2]) <= 30 || (mInts[length - 1] - mInts[length - 2]) <= 30) {
+//            }
         }
 //        sortList(ints);
 //        if ((ints[1] - ints[0]) >= blank || (ints[0] - ints[1]) >= blank) {
@@ -1833,14 +1835,14 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 
     private void goScOrFt() {
         if (IS_SC) {
-            if (DateUtils.isInRange(9, 0, 23, 59)) {
-                goSc();
-            }
+//            if (DateUtils.isInRange(9, 0, 23, 59)) {
+//            }
+            goSc();
         } else {
 
-            if (DateUtils.isInRange(13, 0, 23, 59) || DateUtils.isInRange(0, 0, 4, 00)) {
-                goFt();
-            }
+//            if (DateUtils.isInRange(13, 0, 23, 59) || DateUtils.isInRange(0, 0, 4, 00)) {
+//            }
+            goFt();
         }
     }
 
