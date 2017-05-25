@@ -24,11 +24,11 @@ function goSc(){
   setTimeout(function(){
     var oneTenBtn = document.getElementById('cate_menus_50').getElementsByTagName("a")[1];
     oneTenBtn.click();
-  },200)
+  },200);
   setTimeout(function(){
     var oneTenBtn = document.getElementById('cate_menus_50').getElementsByTagName("a")[1];
     oneTenBtn.click();
-  },500)
+  },500);
 }
 
 function goFt(){
@@ -37,11 +37,11 @@ function goFt(){
   setTimeout(function(){
     var oneTenBtn = document.getElementById('cate_menus_55').getElementsByTagName("a")[1];
     oneTenBtn.click();
-  },200)
+  },200);
   setTimeout(function(){
     var oneTenBtn = document.getElementById('cate_menus_55').getElementsByTagName("a")[1];
     oneTenBtn.click();
-  },500)
+  },500);
 }
 
 
