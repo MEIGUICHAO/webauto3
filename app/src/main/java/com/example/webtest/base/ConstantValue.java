@@ -9,16 +9,16 @@ public interface ConstantValue {
 //    public int autoSame20 = 35;
 //    public int autoSame15 = 42;
 //    public int autoSame10 = 52;
-    public int autoSame20 = 20;
-    public int autoSame15 = 25;
-    public int autoSame10 = 30;
+public int autoSame20 = 27;
+    public int autoSame15 = 32;
+    public int autoSame10 = 40;
 
-//    public int autoCustomSame20 = 26;
+    //    public int autoCustomSame20 = 26;
 //    public int autoCustomSame15 = 28;
 //    public int autoCustomSame10 = 30;
-    public int autoCustomSame20 = 27;
-    public int autoCustomSame15 = 34;
-    public int autoCustomSame10 = 40;
+    public int autoCustomSame20 = 38;
+    public int autoCustomSame15 = 48;
+    public int autoCustomSame10 = 58;
 //    public int autoCustomSame20 = 16;
 //    public int autoCustomSame15 = 18;
 //    public int autoCustomSame10 = 20;
