@@ -1952,7 +1952,7 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
                     int temp = arr[j];
                     arr[j] = arr[j + 1];
                     arr[j + 1] = temp;
-                    String str = sameList.get(j);
+                    String str = strArr[j];
                     strArr[j] = strArr[j + 1];
                     strArr[j + 1] = str;
                 }

@@ -230,9 +230,9 @@ public class WA_YundaFragment extends WA_BaseFragment {
 
         if (buyPositionList.size() > 0) {
             if (ConstantUtils.isCUSTOM()) {
-                getMethod(buyPositionList, amount, "0", IS_Auto, typeBlank, smarllerInts[smarllerInts.length - 2]);
+                getMethod(buyPositionList, amount, "100", IS_Auto, typeBlank, smarllerInts[smarllerInts.length - 2]);
             } else {
-                getMethod(buyPositionList, amount, "0", IS_Auto, typeBlank, 0);
+                getMethod(buyPositionList, amount, "100", IS_Auto, typeBlank, 0);
             }
             logicStr = logicStr + "commitData(1000);";
         }
