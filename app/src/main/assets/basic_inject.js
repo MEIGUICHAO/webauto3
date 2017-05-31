@@ -21,6 +21,8 @@ function doClickByTag(){
 function goSc(){
   var scBtn = document.getElementById('homeMenus').getElementsByTagName("a")[0];
   scBtn.click();
+  var money = document.getElementById('userinfo_money');
+  localMethod.JI_LOG(money.innerHTML);
   setTimeout(function(){
     var oneTenBtn = document.getElementById('cate_menus_50').getElementsByTagName("a")[1];
     oneTenBtn.click();
@@ -30,6 +32,8 @@ function goSc(){
 function goFt(){
   var scBtn = document.getElementById('homeMenus').getElementsByTagName("a")[1];
   scBtn.click();
+  var money = document.getElementById('userinfo_money');
+  localMethod.JI_LOG(money.innerHTML);
   setTimeout(function(){
     var oneTenBtn = document.getElementById('cate_menus_55').getElementsByTagName("a")[1];
     oneTenBtn.click();
