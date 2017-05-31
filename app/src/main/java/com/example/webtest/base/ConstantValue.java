@@ -5,30 +5,20 @@ package com.example.webtest.base;
  */
 
 public interface ConstantValue {
-    public int autoSame30 = 25;
-//    public int autoSame20 = 35;
-//    public int autoSame15 = 42;
-//    public int autoSame10 = 52;
-public int autoSame20 = 27;
-    public int autoSame15 = 32;
-    public int autoSame10 = 40;
 
-    //    public int autoCustomSame20 = 26;
-//    public int autoCustomSame15 = 28;
-//    public int autoCustomSame10 = 30;
-    public int autoCustomSame20 = 38;
-    public int autoCustomSame15 = 48;
-    public int autoCustomSame10 = 58;
-//    public int autoCustomSame20 = 16;
-//    public int autoCustomSame15 = 18;
-//    public int autoCustomSame10 = 20;
-//    public int autoSame20 = 25;
-//    public int autoSame15 = 32;
-//    public int autoSame10 = 42;
-    public int originAmount = 1;
+
+    public int autoSame20 = 23;
+    public int autoSame15 = 23;
+    public int autoSame10 = 23;
+    public int autoCustomSame20 = 28;
+    public int autoCustomSame15 = 28;
+    public int autoCustomSame10 = 28;
     public int AllCountCoordinate = 1;
-    public int ClassCoordinate = 1;
+    public int ClassCoordinate = 7;
     public int CustomCoordinate = 3;
+
+    public int BeginCoordinate = 7;
+    public int EndCoordinate = 3;
 
     //blank
     public int autoBlank20 = 20;
@@ -42,7 +32,8 @@ public int autoSame20 = 27;
 
 
 //    public String webUrl = "https://www.sx67.com/";
-    public String webUrl = "https://www.sx67.com/mobile/#home/";
+//    public String webUrl = "https://www.sx67.com/mobile/#home/";
+    public String webUrl = "https://www.sx5566.com/mobile/#home/";
 //    public String webUrl = "https://www.baidu.com";
 
 

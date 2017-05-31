@@ -205,7 +205,9 @@ public class WA_YundaFragment extends WA_BaseFragment {
 //        }
 
         ArrayList<String> buylist = new ArrayList<String>();
+        ArrayList<String> buydiflist = new ArrayList<String>();
         ArrayList<Integer> smallerList = new ArrayList<Integer>();
+        ArrayList<Integer> smallerDifList = new ArrayList<Integer>();
 
         for (int i = 0; i < buyPositionList.size(); i++) {
             buylist.add(buyPositionList.get(i));
@@ -214,9 +216,8 @@ public class WA_YundaFragment extends WA_BaseFragment {
                 int smarllInt = Integer.parseInt(split[2]);
                 smallerList.add(smarllInt);
             }
-
-
         }
+
         for (int i = 0; i < buyNumList.size(); i++) {
             buylist.add(buyNumList.get(i));
             if (i % 2 != 0) {
@@ -226,7 +227,17 @@ public class WA_YundaFragment extends WA_BaseFragment {
             }
         }
 
+        for (int i = 0; i < buyDifList.size(); i++) {
+            buydiflist.add(buyDifList.get(i));
+            if (i % 2 != 0) {
+                String[] split = buyDifList.get(i).split("数字：");
+                int smarllInt = Integer.parseInt(split[2]);
+                smallerDifList.add(smarllInt);
+            }
+        }
+
         int[] smarllerInts = sortIntList(smallerList);
+        int[] smarllerFifInts = sortIntList(smallerDifList);
 
         if (buyPositionList.size() > 0) {
             if (ConstantUtils.isCUSTOM()) {
@@ -291,6 +302,11 @@ public class WA_YundaFragment extends WA_BaseFragment {
 //                if (!Utils.isCurrentInTimeScope(13, 20, 3, 0) && Integer.parseInt(myAmount) < ConstantUtils.originAmount * 3) {
 //                    return;
 //                }
+                if (ConstantUtils.isCUSTOM()) {
+                    myAmount = ConstantUtils.originAmount * 2 + "";
+                } else {
+                    myAmount = ConstantUtils.originAmount + "";
+                }
                 logicStr = logicStr + "selectNumRange(" + num + "," + myAmount + "," + time + ");";
             } else {
                 logicStr = logicStr + "selectNumRange(" + num + "," + amount + "," + time + ");";
@@ -335,16 +351,31 @@ public class WA_YundaFragment extends WA_BaseFragment {
 
 
         if (fiboArr == null) {
-            fiboArr = new int[14];
+            fiboArr = new int[7];
             fiboArr[0] = fiboArr[1] = 1;
             for (int i = 2; i < 7; i++) {
                 fiboArr[i] = fiboArr[i - 1] + fiboArr[i - 2];
             }
-
-            fiboArr[7] = fiboArr[8] = 3;
-            for (int i = 9; i < fiboArr.length; i++) {
-                fiboArr[i] = fiboArr[i - 1] + fiboArr[i - 2];
-            }
+//
+//            fiboArr[7] = fiboArr[8] = 1;
+//            for (int i = 9; i < 14; i++) {
+//                fiboArr[i] = fiboArr[i - 1] + fiboArr[i - 2];
+//            }
+//
+//            fiboArr[14] = fiboArr[15] = 1;
+//            for (int i = 16; i < 21; i++) {
+//                fiboArr[i] = fiboArr[i - 1] + fiboArr[i - 2];
+//            }
+//
+//            fiboArr[21] = fiboArr[22] = 1;
+//            for (int i = 23; i < 28; i++) {
+//                fiboArr[i] = fiboArr[i - 1] + fiboArr[i - 2];
+//            }
+//
+//            fiboArr[28] = fiboArr[29] = 1;
+//            for (int i = 30; i < fiboArr.length; i++) {
+//                fiboArr[i] = fiboArr[i - 1] + fiboArr[i - 2];
+//            }
         }
         try {
             mAmount = fiboArr[anInt - sameInt] * ConstantUtils.getOriginAmount() + "";

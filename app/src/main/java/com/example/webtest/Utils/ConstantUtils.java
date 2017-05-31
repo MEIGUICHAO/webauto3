@@ -7,10 +7,13 @@ package com.example.webtest.Utils;
 public class ConstantUtils {
 
 
+    public static int difNUm = 38;
+
+
     public static int autoSame20 = 27;
     public static int autoSame15 = 34;
     public static int autoSame10 = 44;
-    public static int originAmount = 1;
+    public static int originAmount = 10;
     public static int AllCountCoordinate = 1;
 
     public static boolean isCUSTOM() {
@@ -23,7 +26,44 @@ public class ConstantUtils {
 
     public static boolean CUSTOM = false;
 
+    public static boolean SC_BIGIN = false;
+    public static boolean FT_BIGIN = false;
 
+    public static boolean SC_BIGGER_BIGIN = false;
+
+    public static boolean isFtBiggreBigin() {
+        return FT_BIGGRE_BIGIN;
+    }
+
+    public static void setFtBiggreBigin(boolean ftBiggreBigin) {
+        FT_BIGGRE_BIGIN = ftBiggreBigin;
+    }
+
+    public static boolean isScBiggerBigin() {
+        return SC_BIGGER_BIGIN;
+    }
+
+    public static void setScBiggerBigin(boolean scBiggerBigin) {
+        SC_BIGGER_BIGIN = scBiggerBigin;
+    }
+
+    public static boolean FT_BIGGRE_BIGIN = false;
+
+    public static boolean isFtBigin() {
+        return FT_BIGIN;
+    }
+
+    public static void setFtBigin(boolean ftBigin) {
+        FT_BIGIN = ftBigin;
+    }
+
+    public static boolean isScBigin() {
+        return SC_BIGIN;
+    }
+
+    public static void setScBigin(boolean scBigin) {
+        SC_BIGIN = scBigin;
+    }
 
     //blank
     public static int autoBlank20 = 20;

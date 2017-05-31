@@ -915,7 +915,7 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
                             allCount = allCount + sameList.size();
 
                         } else {
-                            getBlankBuyResult(sameList, true);
+                            getBlankBuyResult(sameList, true, false);
 
                         }
                     }
@@ -930,7 +930,7 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
                             allCount = allCount + sameNumList.size();
 
                         } else {
-                            getBlankBuyResult(sameNumList, false);
+                            getBlankBuyResult(sameNumList, false, false);
 
                         }
                     }
@@ -939,12 +939,13 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
                 }
 
 
-                if (difList.size() >= 2) {
+                if (difList.size() >= 3) {
                     learnResultStr2 = learnResultStr2 + "\n" + "不同位置:" + "\n";
-                    for (int i = 0; i < difList.size(); i++) {
-                        learnResultStr2 = learnResultStr2 + difList.get(i) + "\n" + "************************" + "\n";
-                        buyDifList.add(difList.get(i));
-                    }
+                    getBlankBuyResult(difList, false, true);
+//                    for (int i = 0; i < difList.size(); i++) {
+//                        learnResultStr2 = learnResultStr2 + difList.get(i) + "\n" + "************************" + "\n";
+//                        buyDifList.add(difList.get(i));
+//                    }
 //                    allCount = allCount + difList.size();
                 }
 
@@ -968,7 +969,7 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
     }
 
     //TODO
-    private void getBlankBuyResult(ArrayList<String> sameList, boolean IsSamePositon) {
+    private void getBlankBuyResult(ArrayList<String> sameList, boolean IsSamePositon, boolean isDifNum) {
 //        if (sameList.size() > 2) {
 //            return;
 //        }
@@ -982,18 +983,26 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
         int[] mInts = sortInt(ints);
         int length = mInts.length;
         if ((mInts[length - 1] - mInts[length - 2]) >= blank || (mInts[length - 1] - mInts[length - 2]) >= blank) {
+//            if ((mInts[length - 1] - mInts[length - 2]) < 30) {
+//            }
             allCount = allCount + 2;
-            for (int j = length - 1; j >= length - 2; j--) {
-                if (IsSamePositon) {
-                    learnResultStr2 = learnResultStr2 + sortStr[j] + "\n" + "************************" + "\n";
-                    buyPositionList.add(sortStr[j]);
-                } else {
+            if (isDifNum) {
+
+                for (int j = length - 1; j >= length - 3; j--) {
                     learnResultStr3 = learnResultStr3 + sortStr[j] + "\n" + "************************" + "\n";
-                    buyNumList.add(sortStr[j]);
+                    buyDifList.add(sortStr[j]);
+                }
+            } else {
+                for (int j = length - 1; j >= length - 2; j--) {
+                    if (IsSamePositon) {
+                        learnResultStr2 = learnResultStr2 + sortStr[j] + "\n" + "************************" + "\n";
+                        buyPositionList.add(sortStr[j]);
+                    } else {
+                        learnResultStr3 = learnResultStr3 + sortStr[j] + "\n" + "************************" + "\n";
+                        buyNumList.add(sortStr[j]);
+                    }
                 }
             }
-//            if ((mInts[length - 1] - mInts[length - 2]) <= 30 || (mInts[length - 1] - mInts[length - 2]) <= 30) {
-//            }
         }
 //        sortList(ints);
 //        if ((ints[1] - ints[0]) >= blank || (ints[0] - ints[1]) >= blank) {
@@ -1844,6 +1853,16 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 //            }
             goFt();
         }
+//        UIUtils.postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                if (IS_SC) {
+//                    goSc();
+//                } else {
+//                    goFt();
+//                }
+//            }
+//        }, 200);
     }
 
     private void autoDealMethod() {
@@ -1872,10 +1891,10 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
         delayDeal(ConstantValue.autoBlank20, ConstantValue.autoSame20, ConstantValue.TYPE_BLANK_20, 0);
         delayDeal(ConstantValue.autoBlank15, ConstantValue.autoSame15, ConstantValue.TYPE_BLANK_15, 16);
         delayDeal(ConstantValue.autoBlank10, ConstantValue.autoSame10, ConstantValue.TYPE_BLANK_10, 32);
-        setDealData(48, ConstantValue.autoCustomSame20 + "", ConstantValue.autoCustomSame15 + "", ConstantValue.autoCustomSame10 + "", true, ConstantValue.CustomCoordinate);
-        delayDeal(ConstantUtils.autoBlank20, ConstantUtils.autoSame20, ConstantValue.TYPE_BLANK_20, 50);
-        delayDeal(ConstantUtils.autoBlank15, ConstantUtils.autoSame15, ConstantValue.TYPE_BLANK_15, 66);
-        delayDeal(ConstantUtils.autoBlank10, ConstantUtils.autoSame10, ConstantValue.TYPE_BLANK_10, 82);
+        setDealData(48, ConstantValue.autoCustomSame20 + "", ConstantValue.autoCustomSame15 + "", ConstantValue.autoCustomSame10 + "", true, ConstantValue.ClassCoordinate);
+        delayDeal(ConstantValue.autoBlank20, ConstantValue.autoCustomSame20, ConstantValue.TYPE_BLANK_20, 50);
+        delayDeal(ConstantValue.autoBlank15, ConstantValue.autoCustomSame15, ConstantValue.TYPE_BLANK_15, 66);
+        delayDeal(ConstantValue.autoBlank10, ConstantValue.autoCustomSame10, ConstantValue.TYPE_BLANK_10, 82);
 
 //        setDealData(38);
 //        delayDeal(ConstantValue.autoBlank20, ConstantValue.autoSame20, ConstantValue.TYPE_BLANK_20, 40);
@@ -1920,13 +1939,47 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
             @Override
             public void run() {
                 onClick(btnCaculate);
+
             }
         }, 2000 + time);
         UIUtils.postDelayed(new Runnable() {
             @Override
             public void run() {
+                if (IS_SC) {
+                    if (allCount > ConstantValue.BeginCoordinate) {
+                        if (ConstantUtils.isCUSTOM()) {
+                            ConstantUtils.setScBiggerBigin(true);
+                        } else {
+                            ConstantUtils.setScBigin(true);
+                        }
+                    } else if (allCount < ConstantValue.EndCoordinate) {
+                        if (ConstantUtils.isCUSTOM()) {
+                            ConstantUtils.setScBigin(false);
+                        } else {
+                            ConstantUtils.setScBiggerBigin(false);
+                        }
+                    }
+                } else {
 
-                if (allCount > ConstantUtils.AllCountCoordinate) {
+                    if (allCount > ConstantValue.BeginCoordinate) {
+
+                        if (ConstantUtils.isCUSTOM()) {
+                            ConstantUtils.setFtBiggreBigin(true);
+                        } else {
+                            ConstantUtils.setFtBigin(true);
+                        }
+                    } else if (allCount < ConstantValue.EndCoordinate) {
+
+                        if (ConstantUtils.isCUSTOM()) {
+                            ConstantUtils.setFtBiggreBigin(false);
+                        } else {
+                            ConstantUtils.setFtBigin(false);
+                        }
+                    }
+                }
+
+                if ((!ConstantUtils.isCUSTOM()&&IS_SC&&ConstantUtils.isScBigin())||(!ConstantUtils.isCUSTOM()&&!IS_SC&&ConstantUtils.isFtBigin())
+                        ||(ConstantUtils.isCUSTOM()&&IS_SC&&ConstantUtils.isScBiggerBigin())||(ConstantUtils.isCUSTOM()&&!IS_SC&&ConstantUtils.isFtBiggreBigin())) {
 
                     UIUtils.postDelayed(new Runnable() {
                         @Override
