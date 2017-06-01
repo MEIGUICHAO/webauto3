@@ -188,6 +188,7 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
     private int allCount;
     private String learnResultStr4;
     private String amount;
+    private String cTerm;
 
     public int[] getNumMax() {
         return numMax;
@@ -1829,8 +1830,8 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 
     private void autoDealSc(boolean netError) {
 //        Log.e(TAG, "范围内: "+Utils.isCurrentInTimeScope(13, 20, 0, 35));
-        Log.e(TAG, "范围内1: " + DateUtils.isInRange(13, 0, 23, 59));
-        Log.e(TAG, "范围内2: " + DateUtils.isInRange(0, 0, 4, 00));
+//        Log.e(TAG, "范围内1: " + DateUtils.isInRange(13, 0, 23, 59));
+//        Log.e(TAG, "范围内2: " + DateUtils.isInRange(0, 0, 4, 00));
 //        Log.e(TAG, "autoDealSc: ");
 //        etSame.setText("15");
         IS_AUTO_GET = true;
@@ -1886,15 +1887,15 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
         }
 
 //        setCustomDealData(ConstantValue.autoCustomSame20 + "", ConstantValue.autoCustomSame15 + "", ConstantValue.autoCustomSame10 + "", true, ConstantValue.CustomCoordinate);
-
+        ConstantUtils.setIsSc(IS_SC);
         setDealData(0,ConstantValue.autoSame20 + "", ConstantValue.autoSame15 + "", ConstantValue.autoSame10 + "", false, ConstantValue.ClassCoordinate);
-        delayDeal(ConstantValue.autoBlank20, ConstantValue.autoSame20, ConstantValue.TYPE_BLANK_20, 0);
-        delayDeal(ConstantValue.autoBlank15, ConstantValue.autoSame15, ConstantValue.TYPE_BLANK_15, 16);
-        delayDeal(ConstantValue.autoBlank10, ConstantValue.autoSame10, ConstantValue.TYPE_BLANK_10, 32);
+        delayDeal(ConstantValue.autoBlank20, ConstantValue.autoSame20 + ConstantUtils.getFabInt(IS_SC, false, ConstantValue.TYPE_BLANK_20), ConstantValue.TYPE_BLANK_20, 0);
+        delayDeal(ConstantValue.autoBlank15, ConstantValue.autoSame15 + ConstantUtils.getFabInt(IS_SC, false, ConstantValue.TYPE_BLANK_15), ConstantValue.TYPE_BLANK_15, 16);
+        delayDeal(ConstantValue.autoBlank10, ConstantValue.autoSame10 + ConstantUtils.getFabInt(IS_SC, false, ConstantValue.TYPE_BLANK_10), ConstantValue.TYPE_BLANK_10, 32);
         setDealData(48, ConstantValue.autoCustomSame20 + "", ConstantValue.autoCustomSame15 + "", ConstantValue.autoCustomSame10 + "", true, ConstantValue.ClassCoordinate);
-        delayDeal(ConstantValue.autoBlank20, ConstantValue.autoCustomSame20, ConstantValue.TYPE_BLANK_20, 50);
-        delayDeal(ConstantValue.autoBlank15, ConstantValue.autoCustomSame15, ConstantValue.TYPE_BLANK_15, 66);
-        delayDeal(ConstantValue.autoBlank10, ConstantValue.autoCustomSame10, ConstantValue.TYPE_BLANK_10, 82);
+        delayDeal(ConstantValue.autoBlank20, ConstantValue.autoCustomSame20 + ConstantUtils.getFabInt(IS_SC, true, ConstantValue.TYPE_BLANK_20), ConstantValue.TYPE_BLANK_20, 50);
+        delayDeal(ConstantValue.autoBlank15, ConstantValue.autoCustomSame15 + ConstantUtils.getFabInt(IS_SC, true, ConstantValue.TYPE_BLANK_15), ConstantValue.TYPE_BLANK_15, 66);
+        delayDeal(ConstantValue.autoBlank10, ConstantValue.autoCustomSame10 + ConstantUtils.getFabInt(IS_SC, true, ConstantValue.TYPE_BLANK_10), ConstantValue.TYPE_BLANK_10, 82);
 
 //        setDealData(38);
 //        delayDeal(ConstantValue.autoBlank20, ConstantValue.autoSame20, ConstantValue.TYPE_BLANK_20, 40);
@@ -1932,6 +1933,7 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 
     private void dealType(final int time, int blank, int same, final int blanktype) {
         Log.e(TAG, "time: " + blanktype + DateUtils.formatDate(System.currentTimeMillis()));
+        cTerm = mList.get(0).getCTerm();
         etBlank.setText(blank + "");
         etSame.setText(same + "");
         etDif.setText("100");
@@ -1948,15 +1950,17 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
                 if (IS_SC) {
                     if (allCount > ConstantValue.BeginCoordinate) {
                         if (ConstantUtils.isCUSTOM()) {
-                            ConstantUtils.setScBiggerBigin(true);
+                            ConstantUtils.setScBiggerBigin(true,blanktype);
+                            ConstantUtils.setScBiggerFab(blanktype, cTerm);
                         } else {
-                            ConstantUtils.setScBigin(true);
+                            ConstantUtils.setScBigin(true,blanktype);
+                            ConstantUtils.setScFab(blanktype,cTerm);
                         }
                     } else if (allCount < ConstantValue.EndCoordinate) {
                         if (ConstantUtils.isCUSTOM()) {
-                            ConstantUtils.setScBigin(false);
+                            ConstantUtils.setScBigin(false,blanktype);
                         } else {
-                            ConstantUtils.setScBiggerBigin(false);
+                            ConstantUtils.setScBiggerBigin(false,blanktype);
                         }
                     }
                 } else {
@@ -1964,22 +1968,24 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
                     if (allCount > ConstantValue.BeginCoordinate) {
 
                         if (ConstantUtils.isCUSTOM()) {
-                            ConstantUtils.setFtBiggreBigin(true);
+                            ConstantUtils.setFtBiggreBigin(true,blanktype);
+                            ConstantUtils.setFtBiggerFab(blanktype, cTerm);
                         } else {
-                            ConstantUtils.setFtBigin(true);
+                            ConstantUtils.setFtBigin(true,blanktype);
+                            ConstantUtils.setFtFab(blanktype, cTerm);
                         }
                     } else if (allCount < ConstantValue.EndCoordinate) {
 
                         if (ConstantUtils.isCUSTOM()) {
-                            ConstantUtils.setFtBiggreBigin(false);
+                            ConstantUtils.setFtBiggreBigin(false,blanktype);
                         } else {
-                            ConstantUtils.setFtBigin(false);
+                            ConstantUtils.setFtBigin(false,blanktype);
                         }
                     }
                 }
 
-                if ((!ConstantUtils.isCUSTOM()&&IS_SC&&ConstantUtils.isScBigin())||(!ConstantUtils.isCUSTOM()&&!IS_SC&&ConstantUtils.isFtBigin())
-                        ||(ConstantUtils.isCUSTOM()&&IS_SC&&ConstantUtils.isScBiggerBigin())||(ConstantUtils.isCUSTOM()&&!IS_SC&&ConstantUtils.isFtBiggreBigin())) {
+                if ((!ConstantUtils.isCUSTOM()&&IS_SC&&ConstantUtils.isScBigin(blanktype))||(!ConstantUtils.isCUSTOM()&&!IS_SC&&ConstantUtils.isFtBigin(blanktype))
+                        ||(ConstantUtils.isCUSTOM()&&IS_SC&&ConstantUtils.isScBiggerBigin(blanktype))||(ConstantUtils.isCUSTOM()&&!IS_SC&&ConstantUtils.isFtBiggreBigin(blanktype))) {
 
                     UIUtils.postDelayed(new Runnable() {
                         @Override

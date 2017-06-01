@@ -204,10 +204,19 @@ public class WA_YundaFragment extends WA_BaseFragment {
 //            return;
 //        }
 
+        if (fiboArr == null) {
+            fiboArr = new int[7];
+            fiboArr[0] = fiboArr[1] = 1;
+            for (int i = 2; i < 7; i++) {
+                fiboArr[i] = fiboArr[i - 1] + fiboArr[i - 2];
+            }
+        }
+
         ArrayList<String> buylist = new ArrayList<String>();
         ArrayList<String> buydiflist = new ArrayList<String>();
         ArrayList<Integer> smallerList = new ArrayList<Integer>();
         ArrayList<Integer> smallerDifList = new ArrayList<Integer>();
+
 
         for (int i = 0; i < buyPositionList.size(); i++) {
             buylist.add(buyPositionList.get(i));
@@ -303,11 +312,15 @@ public class WA_YundaFragment extends WA_BaseFragment {
 //                    return;
 //                }
                 if (ConstantUtils.isCUSTOM()) {
-                    myAmount = ConstantUtils.originAmount * 2 + "";
+                    myAmount = ConstantUtils.originAmount * 2*fiboArr[ConstantUtils.getFabInt(ConstantUtils.isSc(), ConstantUtils.isCUSTOM(), typeBlank)] + "";
                 } else {
-                    myAmount = ConstantUtils.originAmount + "";
+                    myAmount = ConstantUtils.originAmount * fiboArr[ConstantUtils.getFabInt(ConstantUtils.isSc(), ConstantUtils.isCUSTOM(), typeBlank)] + "";
                 }
-                logicStr = logicStr + "selectNumRange(" + num + "," + myAmount + "," + time + ");";
+                int money = Integer.parseInt(myAmount);
+                if (i % 2 == 0) {
+                    money = money * 2;
+                }
+                logicStr = logicStr + "selectNumRange(" + num + "," + money + "," + time + ");";
             } else {
                 logicStr = logicStr + "selectNumRange(" + num + "," + amount + "," + time + ");";
             }
@@ -381,9 +394,9 @@ public class WA_YundaFragment extends WA_BaseFragment {
             mAmount = fiboArr[anInt - sameInt] * ConstantUtils.getOriginAmount() + "";
         } catch (Exception e) {
 
-            Log.e(TAG, "exception!!!: anInt" + anInt);
-            Log.e(TAG, "sameInt!!!: sameInt" + sameInt);
-            Log.e(TAG, "exception!!!: typeBlank" + typeBlank);
+//            Log.e(TAG, "exception!!!: anInt" + anInt);
+//            Log.e(TAG, "sameInt!!!: sameInt" + sameInt);
+//            Log.e(TAG, "exception!!!: typeBlank" + typeBlank);
 //             Log.e(TAG, "exception!!!: anInt" + anInt);
 //            Log.e(TAG, "exception!!!: typeBlank" + typeBlank);
             mAmount = "";

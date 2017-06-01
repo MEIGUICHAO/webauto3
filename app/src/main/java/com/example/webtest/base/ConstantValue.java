@@ -7,18 +7,19 @@ package com.example.webtest.base;
 public interface ConstantValue {
 
 
-    public int autoSame20 = 23;
-    public int autoSame15 = 23;
-    public int autoSame10 = 23;
-    public int autoCustomSame20 = 28;
-    public int autoCustomSame15 = 28;
-    public int autoCustomSame10 = 28;
+    public int autoSame20 = 18;
+    public int autoSame15 = 18;
+    public int autoSame10 = 18;
+    public int autoCustomSame20 = 23;
+    public int autoCustomSame15 = 23;
+    public int autoCustomSame10 = 23;
     public int AllCountCoordinate = 1;
     public int ClassCoordinate = 7;
     public int CustomCoordinate = 3;
+    public int fabMax = 6;
 
-    public int BeginCoordinate = 7;
-    public int EndCoordinate = 3;
+    public int BeginCoordinate = 13;
+    public int EndCoordinate = 5;
 
     //blank
     public int autoBlank20 = 20;
