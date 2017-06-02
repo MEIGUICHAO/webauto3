@@ -1932,7 +1932,7 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 
 
     private void dealType(final int time, int blank, int same, final int blanktype) {
-        Log.e(TAG, "time: " + blanktype + DateUtils.formatDate(System.currentTimeMillis()));
+        Log.e(TAG, "time: " + blanktype + "-----" + "allCount:" + allCount);
         cTerm = mList.get(0).getCTerm();
         etBlank.setText(blank + "");
         etSame.setText(same + "");

@@ -205,11 +205,12 @@ public class WA_YundaFragment extends WA_BaseFragment {
 //        }
 
         if (fiboArr == null) {
-            fiboArr = new int[7];
+            fiboArr = new int[8];
             fiboArr[0] = fiboArr[1] = 1;
             for (int i = 2; i < 7; i++) {
                 fiboArr[i] = fiboArr[i - 1] + fiboArr[i - 2];
             }
+            fiboArr[7] = 13;
         }
 
         ArrayList<String> buylist = new ArrayList<String>();

@@ -1,5 +1,7 @@
 package com.example.webtest.Utils;
 
+import android.util.Log;
+
 import com.example.webtest.base.ConstantValue;
 
 /**
@@ -12,7 +14,7 @@ public class ConstantUtils {
     public static int autoSame20 = 27;
     public static int autoSame15 = 34;
     public static int autoSame10 = 44;
-    public static int originAmount = 10;
+    public static int originAmount = 1;
     public static int AllCountCoordinate = 1;
 
     public static boolean IS_SC = false;
@@ -433,6 +435,7 @@ public class ConstantUtils {
                     SC10CTREM = ctrem;
                 } else if (!SC10CTREM.equals(ctrem) && SC_10Fabint <= ConstantValue.fabMax) {
                     SC_10Fabint++;
+                    Log.e(ctrem, "SC_10Fabint: " + SC_10Fabint);
                 } else if (!SC10CTREM.equals(ctrem)) {
                     SC_10Fabint = ConstantValue.fabMax;
                 }
