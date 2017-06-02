@@ -1932,11 +1932,11 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 
 
     private void dealType(final int time, int blank, int same, final int blanktype) {
-        Log.e(TAG, "time: " + blanktype + "-----" + "allCount:" + allCount);
         cTerm = mList.get(0).getCTerm();
         etBlank.setText(blank + "");
         etSame.setText(same + "");
         etDif.setText("100");
+        Log.e(TAG, "same: " + same);
         UIUtils.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -1947,6 +1947,7 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
         UIUtils.postDelayed(new Runnable() {
             @Override
             public void run() {
+                Log.e(TAG, "time: " + blanktype + "-----" + "allCount:" + allCount);
                 if (IS_SC) {
                     if (allCount > ConstantValue.BeginCoordinate) {
                         if (ConstantUtils.isCUSTOM()) {
@@ -1958,9 +1959,15 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
                         }
                     } else if (allCount < ConstantValue.EndCoordinate) {
                         if (ConstantUtils.isCUSTOM()) {
-                            ConstantUtils.setScBigin(false,blanktype);
+                            ConstantUtils.setScBigin(false, blanktype);
                         } else {
-                            ConstantUtils.setScBiggerBigin(false,blanktype);
+                            ConstantUtils.setScBiggerBigin(false, blanktype);
+                        }
+                    } else {
+                        if (ConstantUtils.isCUSTOM()) {
+                            ConstantUtils.setScBiggerFab(blanktype, cTerm);
+                        } else {
+                            ConstantUtils.setScFab(blanktype,cTerm);
                         }
                     }
                 } else {
@@ -1977,9 +1984,15 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
                     } else if (allCount < ConstantValue.EndCoordinate) {
 
                         if (ConstantUtils.isCUSTOM()) {
-                            ConstantUtils.setFtBiggreBigin(false,blanktype);
+                            ConstantUtils.setFtBiggreBigin(false, blanktype);
                         } else {
-                            ConstantUtils.setFtBigin(false,blanktype);
+                            ConstantUtils.setFtBigin(false, blanktype);
+                        }
+                    } else {
+                        if (ConstantUtils.isCUSTOM()) {
+                            ConstantUtils.setFtBiggerFab(blanktype, cTerm);
+                        } else {
+                            ConstantUtils.setFtFab(blanktype, cTerm);
                         }
                     }
                 }

@@ -378,9 +378,9 @@ public class ConstantUtils {
                 if (FT_20Fabint == -1) {
                     FT_20Fabint = 0;
                     FT20CTREM = ctrem;
-                } else if (!FT20CTREM.equals(ctrem) && FT_20Fabint <= ConstantValue.fabMax) {
+                } else if (!FT20CTREM.equals(ctrem) && FT_20Fabint <= ConstantValue.fabMax && FT_20Fabint != -1) {
                     FT_20Fabint++;
-                } else if (!FT20CTREM.equals(ctrem)) {
+                } else if (!FT20CTREM.equals(ctrem) && FT_20Fabint != -1) {
                     FT_20Fabint = ConstantValue.fabMax;
                 }
                 break;
@@ -388,9 +388,9 @@ public class ConstantUtils {
                 if (FT_15Fabint == -1) {
                     FT_15Fabint = 0;
                     FT15CTREM = ctrem;
-                } else if (!FT15CTREM.equals(ctrem) && FT_15Fabint <= ConstantValue.fabMax) {
+                } else if (!FT15CTREM.equals(ctrem) && FT_15Fabint <= ConstantValue.fabMax && FT_15Fabint != -1) {
                     FT_15Fabint++;
-                } else if (!FT15CTREM.equals(ctrem)) {
+                } else if (!FT15CTREM.equals(ctrem) && FT_15Fabint != -1) {
                     FT_15Fabint = ConstantValue.fabMax;
                 }
                 break;
@@ -398,9 +398,9 @@ public class ConstantUtils {
                 if (FT_10Fabint == -1) {
                     FT_10Fabint = 0;
                     FT10CTREM = ctrem;
-                } else if (!FT10CTREM.equals(ctrem) && FT_10Fabint <= ConstantValue.fabMax) {
+                } else if (!FT10CTREM.equals(ctrem) && FT_10Fabint <= ConstantValue.fabMax && FT_10Fabint != -1) {
                     FT_10Fabint++;
-                } else if (!FT10CTREM.equals(ctrem)) {
+                } else if (!FT10CTREM.equals(ctrem) && FT_10Fabint != -1) {
                     FT_10Fabint = ConstantValue.fabMax;
                 }
                 break;
@@ -413,9 +413,9 @@ public class ConstantUtils {
                 if (SC_20Fabint == -1) {
                     SC_20Fabint = 0;
                     SC20CTREM = ctrem;
-                } else if (!SC20CTREM.equals(ctrem) && SC_20Fabint <= ConstantValue.fabMax) {
+                } else if (!SC20CTREM.equals(ctrem) && SC_20Fabint <= ConstantValue.fabMax && SC_20Fabint != -1) {
                     SC_20Fabint++;
-                } else if (!SC20CTREM.equals(ctrem)) {
+                } else if (!SC20CTREM.equals(ctrem) && SC_20Fabint != -1) {
                     SC_20Fabint = ConstantValue.fabMax;
                 }
                 break;
@@ -423,9 +423,9 @@ public class ConstantUtils {
                 if (SC_15Fabint == -1) {
                     SC_15Fabint = 0;
                     SC15CTREM = ctrem;
-                } else if (!SC15CTREM.equals(ctrem) && SC_15Fabint <= ConstantValue.fabMax) {
+                } else if (!SC15CTREM.equals(ctrem) && SC_15Fabint <= ConstantValue.fabMax && SC_15Fabint != -1) {
                     SC_15Fabint++;
-                } else if (!SC15CTREM.equals(ctrem)) {
+                } else if (!SC15CTREM.equals(ctrem) && SC_15Fabint != -1) {
                     SC_15Fabint = ConstantValue.fabMax;
                 }
                 break;
@@ -433,10 +433,10 @@ public class ConstantUtils {
                 if (SC_10Fabint == -1) {
                     SC_10Fabint = 0;
                     SC10CTREM = ctrem;
-                } else if (!SC10CTREM.equals(ctrem) && SC_10Fabint <= ConstantValue.fabMax) {
+                } else if (!SC10CTREM.equals(ctrem) && SC_10Fabint <= ConstantValue.fabMax && SC_10Fabint != -1) {
                     SC_10Fabint++;
                     Log.e(ctrem, "SC_10Fabint: " + SC_10Fabint);
-                } else if (!SC10CTREM.equals(ctrem)) {
+                } else if (!SC10CTREM.equals(ctrem) && SC_10Fabint != -1) {
                     SC_10Fabint = ConstantValue.fabMax;
                 }
                 break;
@@ -449,9 +449,9 @@ public class ConstantUtils {
                 if (SC_20BIGGER_Fabint == -1) {
                     SC_20BIGGER_Fabint = 0;
                     SC20BIGGERCTREM = ctrem;
-                } else if (!SC20BIGGERCTREM.equals(ctrem) && SC_20BIGGER_Fabint <= ConstantValue.fabMax) {
+                } else if (!SC20BIGGERCTREM.equals(ctrem) && SC_20BIGGER_Fabint <= ConstantValue.fabMax && SC_20BIGGER_Fabint != -1) {
                     SC_20BIGGER_Fabint++;
-                } else if (!SC20BIGGERCTREM.equals(ctrem)) {
+                } else if (!SC20BIGGERCTREM.equals(ctrem) && SC_20BIGGER_Fabint != -1) {
                     SC_20BIGGER_Fabint = ConstantValue.fabMax;
                 }
                 break;
@@ -459,9 +459,9 @@ public class ConstantUtils {
                 if (SC_15BIGGER_Fabint == -1) {
                     SC_15BIGGER_Fabint = 0;
                     SC15BIGGERCTREM = ctrem;
-                } else if (!SC15BIGGERCTREM.equals(ctrem) && SC_15BIGGER_Fabint <= ConstantValue.fabMax) {
+                } else if (!SC15BIGGERCTREM.equals(ctrem) && SC_15BIGGER_Fabint <= ConstantValue.fabMax && SC_15BIGGER_Fabint != -1) {
                     SC_15BIGGER_Fabint++;
-                } else if (!SC15BIGGERCTREM.equals(ctrem)) {
+                } else if (!SC15BIGGERCTREM.equals(ctrem) && SC_15BIGGER_Fabint != -1) {
                     SC_15BIGGER_Fabint = ConstantValue.fabMax;
                 }
                 break;
@@ -469,9 +469,9 @@ public class ConstantUtils {
                 if (SC_10BIGGER_Fabint == -1) {
                     SC_10BIGGER_Fabint = 0;
                     SC10BIGGERCTREM = ctrem;
-                } else if (!SC10BIGGERCTREM.equals(ctrem) && SC_10BIGGER_Fabint <= ConstantValue.fabMax) {
+                } else if (!SC10BIGGERCTREM.equals(ctrem) && SC_10BIGGER_Fabint <= ConstantValue.fabMax && SC_10BIGGER_Fabint != -1) {
                     SC_10BIGGER_Fabint++;
-                } else if (!SC10BIGGERCTREM.equals(ctrem)) {
+                } else if (!SC10BIGGERCTREM.equals(ctrem) && SC_10BIGGER_Fabint != -1) {
                     SC_10BIGGER_Fabint = ConstantValue.fabMax;
                 }
                 break;
@@ -484,9 +484,9 @@ public class ConstantUtils {
                 if (FT_20BIGGRE_Fabint == -1) {
                     FT_20BIGGRE_Fabint = 0;
                     FT20BIGGERCTREM = ctrem;
-                } else if (!FT20BIGGERCTREM.equals(ctrem) && SC_20BIGGER_Fabint <= ConstantValue.fabMax) {
+                } else if (!FT20BIGGERCTREM.equals(ctrem) && FT_20BIGGRE_Fabint <= ConstantValue.fabMax && FT_20BIGGRE_Fabint != -1) {
                     FT_20BIGGRE_Fabint++;
-                } else if (!FT20BIGGERCTREM.equals(ctrem)) {
+                } else if (!FT20BIGGERCTREM.equals(ctrem) && FT_20BIGGRE_Fabint != -1) {
                     FT_20BIGGRE_Fabint = ConstantValue.fabMax;
                 }
                 break;
@@ -494,9 +494,9 @@ public class ConstantUtils {
                 if (FT_15BIGGRE_Fabint == -1) {
                     FT_15BIGGRE_Fabint = 0;
                     FT15BIGGERCTREM = ctrem;
-                } else if (!FT15BIGGERCTREM.equals(ctrem) && FT_15BIGGRE_Fabint <= ConstantValue.fabMax) {
+                } else if (!FT15BIGGERCTREM.equals(ctrem) && FT_15BIGGRE_Fabint <= ConstantValue.fabMax && FT_15BIGGRE_Fabint != -1) {
                     FT_15BIGGRE_Fabint++;
-                } else if (!FT15BIGGERCTREM.equals(ctrem)) {
+                } else if (!FT15BIGGERCTREM.equals(ctrem) && FT_15BIGGRE_Fabint != -1) {
                     FT_15BIGGRE_Fabint = ConstantValue.fabMax;
                 }
                 break;
@@ -504,9 +504,9 @@ public class ConstantUtils {
                 if (FT_10BIGGRE_Fabint == -1) {
                     FT_10BIGGRE_Fabint = 0;
                     FT10BIGGERCTREM = ctrem;
-                } else if (!FT10BIGGERCTREM.equals(ctrem) && FT_10BIGGRE_Fabint <= ConstantValue.fabMax) {
+                } else if (!FT10BIGGERCTREM.equals(ctrem) && FT_10BIGGRE_Fabint <= ConstantValue.fabMax && FT_10BIGGRE_Fabint != -1) {
                     FT_10BIGGRE_Fabint++;
-                } else if (!FT10BIGGERCTREM.equals(ctrem)) {
+                } else if (!FT10BIGGERCTREM.equals(ctrem) && FT_10BIGGRE_Fabint != -1) {
                     FT_10BIGGRE_Fabint = ConstantValue.fabMax;
                 }
                 break;

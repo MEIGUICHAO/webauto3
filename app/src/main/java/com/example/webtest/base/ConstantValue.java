@@ -34,8 +34,8 @@ public interface ConstantValue {
 
 //    public String webUrl = "https://www.sx67.com/";
 //    public String webUrl = "https://www.sx67.com/mobile/#home/";
-//    public String webUrl = "https://www.sx5566.com/mobile/#home/";
-    public String webUrl = "https://www.baidu.com";
+    public String webUrl = "https://www.sx5566.com/mobile/#home/";
+//    public String webUrl = "https://www.baidu.com";
 
 
 }

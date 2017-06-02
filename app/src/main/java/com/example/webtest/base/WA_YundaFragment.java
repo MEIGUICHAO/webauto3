@@ -251,7 +251,7 @@ public class WA_YundaFragment extends WA_BaseFragment {
 
         if (buyPositionList.size() > 0) {
             if (ConstantUtils.isCUSTOM()) {
-                getMethod(buyPositionList, amount, "100", IS_Auto, typeBlank, smarllerInts[smarllerInts.length - 2]);
+                getMethod(buyPositionList, amount, "100", IS_Auto, typeBlank, 0);
             } else {
                 getMethod(buyPositionList, amount, "100", IS_Auto, typeBlank, 0);
             }
@@ -259,7 +259,7 @@ public class WA_YundaFragment extends WA_BaseFragment {
         }
         if (buyNumList.size() > 0) {
             if (ConstantUtils.isCUSTOM()) {
-                getMethod(buyNumList, amount, "3500", IS_Auto, typeBlank, smarllerInts[smarllerInts.length - 2]);
+                getMethod(buyNumList, amount, "3500", IS_Auto, typeBlank, 0);
             } else {
                 getMethod(buyNumList, amount, "3500", IS_Auto, typeBlank, 0);
             }
@@ -275,42 +275,38 @@ public class WA_YundaFragment extends WA_BaseFragment {
             int num = (Integer.parseInt(split[0]) - 1) * 10 + Integer.parseInt(split[1]);
             if (IS_AUTO) {
 
-                if (!ConstantUtils.isCUSTOM()) {
-
-                    if (i % 2 == 0) {
-                        String[] splitAmount = buyPositionList.get(i).split("数字：");
-                        String[] splitAmount2 = buyPositionList.get(i + 1).split("数字：");
-                        int sameInt = ConstantUtils.autoSame10;
-                        switch (typeBlank) {
-                            case ConstantValue.TYPE_BLANK_20:
-                                //TODO
-                                sameInt = ConstantUtils.autoSame20;
-                                break;
-                            case ConstantValue.TYPE_BLANK_15:
-                                sameInt = ConstantUtils.autoSame15;
-                                break;
-                            case ConstantValue.TYPE_BLANK_10:
-                                sameInt = ConstantUtils.autoSame10;
-                                break;
-                        }
-                        myAmount = (Integer.parseInt(splitAmount2[2]) - Integer.parseInt(splitAmount[2])) > 0 ? getCustomAmount(Integer.parseInt(splitAmount[2]), typeBlank) : getCustomAmount(Integer.parseInt(splitAmount2[2]), typeBlank);
-                    }
-                } else {
-
-                    if (i % 2 == 0) {
-                        String[] splitAmount = buyPositionList.get(i).split("数字：");
-                        String[] splitAmount2 = buyPositionList.get(i + 1).split("数字：");
-                        if ((Integer.parseInt(splitAmount2[2]) >= smarllerInts) && (Integer.parseInt(splitAmount[2]) >= smarllerInts)) {
-                            myAmount = getCustomAmount(smarllerInts, typeBlank);
-                        } else {
-                            myAmount = getCustomAmount(Integer.parseInt(splitAmount2[2]), typeBlank);
-                        }
-
-                    }
-                }
-//                getCustomAmount(ints[0],);
-//                if (!Utils.isCurrentInTimeScope(13, 20, 3, 0) && Integer.parseInt(myAmount) < ConstantUtils.originAmount * 3) {
-//                    return;
+//                if (!ConstantUtils.isCUSTOM()) {
+//
+//                    if (i % 2 == 0) {
+//                        String[] splitAmount = buyPositionList.get(i).split("数字：");
+//                        String[] splitAmount2 = buyPositionList.get(i + 1).split("数字：");
+//                        int sameInt = ConstantUtils.autoSame10;
+//                        switch (typeBlank) {
+//                            case ConstantValue.TYPE_BLANK_20:
+//                                //TODO
+//                                sameInt = ConstantUtils.autoSame20;
+//                                break;
+//                            case ConstantValue.TYPE_BLANK_15:
+//                                sameInt = ConstantUtils.autoSame15;
+//                                break;
+//                            case ConstantValue.TYPE_BLANK_10:
+//                                sameInt = ConstantUtils.autoSame10;
+//                                break;
+//                        }
+//                        myAmount = (Integer.parseInt(splitAmount2[2]) - Integer.parseInt(splitAmount[2])) > 0 ? getCustomAmount(Integer.parseInt(splitAmount[2]), typeBlank) : getCustomAmount(Integer.parseInt(splitAmount2[2]), typeBlank);
+//                    }
+//                } else {
+//
+//                    if (i % 2 == 0) {
+//                        String[] splitAmount = buyPositionList.get(i).split("数字：");
+//                        String[] splitAmount2 = buyPositionList.get(i + 1).split("数字：");
+//                        if ((Integer.parseInt(splitAmount2[2]) >= smarllerInts) && (Integer.parseInt(splitAmount[2]) >= smarllerInts)) {
+//                            myAmount = getCustomAmount(smarllerInts, typeBlank);
+//                        } else {
+//                            myAmount = getCustomAmount(Integer.parseInt(splitAmount2[2]), typeBlank);
+//                        }
+//
+//                    }
 //                }
                 if (ConstantUtils.isCUSTOM()) {
                     myAmount = ConstantUtils.originAmount * 2*fiboArr[ConstantUtils.getFabInt(ConstantUtils.isSc(), ConstantUtils.isCUSTOM(), typeBlank)] + "";
