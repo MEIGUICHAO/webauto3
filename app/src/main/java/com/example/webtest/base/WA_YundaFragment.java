@@ -308,10 +308,14 @@ public class WA_YundaFragment extends WA_BaseFragment {
 //
 //                    }
 //                }
+                int fabInt = (ConstantUtils.getFabInt(ConstantUtils.isSc(), ConstantUtils.isCUSTOM(), typeBlank)-1);
+                if (fabInt < 0) {
+                    fabInt = 0;
+                }
                 if (ConstantUtils.isCUSTOM()) {
-                    myAmount = ConstantUtils.originAmount * 2*fiboArr[ConstantUtils.getFabInt(ConstantUtils.isSc(), ConstantUtils.isCUSTOM(), typeBlank)] + "";
+                    myAmount = ConstantUtils.originAmount * 2*fiboArr[fabInt] + "";
                 } else {
-                    myAmount = ConstantUtils.originAmount * fiboArr[ConstantUtils.getFabInt(ConstantUtils.isSc(), ConstantUtils.isCUSTOM(), typeBlank)] + "";
+                    myAmount = ConstantUtils.originAmount * fiboArr[fabInt] + "";
                 }
                 int money = Integer.parseInt(myAmount);
                 if (i % 2 == 0) {

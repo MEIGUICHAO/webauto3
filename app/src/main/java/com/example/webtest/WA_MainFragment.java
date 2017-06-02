@@ -1931,12 +1931,11 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
     }
 
 
-    private void dealType(final int time, int blank, int same, final int blanktype) {
+    private void dealType(final int time, int blank,final int same, final int blanktype) {
         cTerm = mList.get(0).getCTerm();
         etBlank.setText(blank + "");
         etSame.setText(same + "");
         etDif.setText("100");
-        Log.e(TAG, "same: " + same);
         UIUtils.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -1947,7 +1946,7 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
         UIUtils.postDelayed(new Runnable() {
             @Override
             public void run() {
-                Log.e(TAG, "time: " + blanktype + "-----" + "allCount:" + allCount);
+                Log.e(TAG, "time: " + blanktype + "-----" + "allCount:" + allCount+ "-----" + "same:" + same);
                 if (IS_SC) {
                     if (allCount > ConstantValue.BeginCoordinate) {
                         if (ConstantUtils.isCUSTOM()) {
@@ -1963,7 +1962,7 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
                         } else {
                             ConstantUtils.setScBiggerBigin(false, blanktype);
                         }
-                    } else {
+                    } else if (ConstantUtils.isScBiggerBigin(blanktype)||ConstantUtils.isScBigin(blanktype)){
                         if (ConstantUtils.isCUSTOM()) {
                             ConstantUtils.setScBiggerFab(blanktype, cTerm);
                         } else {
@@ -1988,7 +1987,7 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
                         } else {
                             ConstantUtils.setFtBigin(false, blanktype);
                         }
-                    } else {
+                    } else if (ConstantUtils.isFtBiggreBigin(blanktype)||ConstantUtils.isFtBigin(blanktype)){
                         if (ConstantUtils.isCUSTOM()) {
                             ConstantUtils.setFtBiggerFab(blanktype, cTerm);
                         } else {

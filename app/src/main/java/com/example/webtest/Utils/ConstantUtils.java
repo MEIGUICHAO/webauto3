@@ -433,11 +433,13 @@ public class ConstantUtils {
                 if (SC_10Fabint == -1) {
                     SC_10Fabint = 0;
                     SC10CTREM = ctrem;
+                    Log.e(ctrem, "ScFabctrem: " + ctrem);
                 } else if (!SC10CTREM.equals(ctrem) && SC_10Fabint <= ConstantValue.fabMax && SC_10Fabint != -1) {
                     SC_10Fabint++;
                     Log.e(ctrem, "SC_10Fabint: " + SC_10Fabint);
                 } else if (!SC10CTREM.equals(ctrem) && SC_10Fabint != -1) {
                     SC_10Fabint = ConstantValue.fabMax;
+                    Log.e(ctrem, "fabMax: " + SC_10Fabint);
                 }
                 break;
         }
