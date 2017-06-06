@@ -7,19 +7,20 @@ package com.example.webtest.base;
 public interface ConstantValue {
 
 
-    public int autoSame20 = 18;
-    public int autoSame15 = 18;
-    public int autoSame10 = 18;
-    public int autoCustomSame20 = 23;
-    public int autoCustomSame15 = 23;
-    public int autoCustomSame10 = 23;
+    public int autoSame20 = 15;
+    public int autoSame15 = 15;
+    public int autoSame10 = 15;
+    public int autoCustomSame20 = 20;
+    public int autoCustomSame15 = 20;
+    public int autoCustomSame10 = 20;
     public int AllCountCoordinate = 1;
     public int ClassCoordinate = 7;
     public int CustomCoordinate = 3;
     public int fabMax = 6;
 
-    public int BeginCoordinate = 15;
+    public int BeginCoordinate = 12;
     public int EndCoordinate = 7;
+    public int dangerCoordinnate = 100;
 
     //blank
     public int autoBlank20 = 20;
@@ -32,9 +33,9 @@ public interface ConstantValue {
     public int TYPE_BLANK_10 = 201110;
 
 
-//    public String webUrl = "https://www.sx67.com/";
-//    public String webUrl = "https://www.sx67.com/mobile/#home/";
-    public String webUrl = "https://www.sx5566.com/mobile/#home/";
+    //    public String webUrl = "https://www.sx67.com/";
+    public String webUrl = "https://www.sx67.com/mobile/#home/";
+//    public String webUrl = "https://www.sx5566.com/mobile/#home/";
 //    public String webUrl = "https://www.baidu.com";
 
 

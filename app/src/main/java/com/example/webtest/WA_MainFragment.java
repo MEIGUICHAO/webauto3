@@ -474,7 +474,17 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
         webSetting.setDefaultTextEncodingName("utf-8");
         webSetting.setLoadWithOverviewMode(true);
         webSetting.setAllowFileAccess(true);
-        ;
+
+        webSetting.setJavaScriptEnabled(true);
+        webSetting.setJavaScriptCanOpenWindowsAutomatically(true);
+        webSetting.setAllowFileAccess(true);// 设置允许访问文件数据
+        webSetting.setSupportZoom(true);
+        webSetting.setBuiltInZoomControls(true);
+        webSetting.setJavaScriptCanOpenWindowsAutomatically(true);
+        webSetting.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
+        webSetting.setDomStorageEnabled(true);
+        webSetting.setDatabaseEnabled(true);
+
         listWeb.loadUrl(ConstantValue.webUrl);
         listWeb.setWebViewClient(new MyListWebViewClient());
         mLocalMethod = new LocalMethod(getActivity(), parameter);
@@ -498,7 +508,8 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
         startBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showComfirDialog(false);
+//                showComfirDialog(false);
+                listWeb.reload();
             }
         });
     }
@@ -1913,13 +1924,41 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
         }, time * 1000);
     }
 
-    private void delayDeal(final int blank,final int samem,final int type,int time) {
+    private void delayDeal(final int blank,final int samem,final int type,final int time) {
         UIUtils.postDelayed(new Runnable() {
             @Override
             public void run() {
-                dealType(0, blank, samem, type);
+                if (time == 0) {
+                    checkDanger();
+                    UIUtils.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+
+                            if (allCount > ConstantValue.dangerCoordinnate) {
+                                DANGER = true;
+                            } else {
+                                DANGER = false;
+                            }
+
+                            Log.e(TAG, "checkDangerAllCount: " + allCount);
+                            dealType(0, blank, samem, type);
+                        }
+                    }, 2000);
+                } else {
+                    dealType(0, blank, samem, type);
+                }
             }
         }, time * 1000);
+    }
+
+    private boolean DANGER = false;
+    private void checkDanger() {
+
+
+        etBlank.setText(10 + "");
+        etSame.setText(ConstantValue.autoSame10 + "");
+        etDif.setText("100");
+        onClick(btnCaculate);
     }
 
     private void setCustomDealData(String num, String num2, String num3, boolean custom, int coordinate) {
@@ -1947,51 +1986,58 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
             @Override
             public void run() {
                 Log.e(TAG, "time: " + blanktype + "-----" + "allCount:" + allCount+ "-----" + "same:" + same);
-                if (IS_SC) {
-                    if (allCount > ConstantValue.BeginCoordinate) {
-                        if (ConstantUtils.isCUSTOM()) {
-                            ConstantUtils.setScBiggerBigin(true,blanktype);
-                            ConstantUtils.setScBiggerFab(blanktype, cTerm);
-                        } else {
-                            ConstantUtils.setScBigin(true,blanktype);
-                            ConstantUtils.setScFab(blanktype,cTerm);
+                Log.e(TAG, "checkDanger: " + DANGER);
+                if (!ConstantUtils.isCUSTOM() && blanktype == ConstantValue.TYPE_BLANK_10) {
+                    Log.e(TAG, "position: " + learnResultStr2);
+                    Log.e(TAG, "num: " + learnResultStr3);
+                }
+                if (!DANGER) {
+                    if (IS_SC) {
+                        if (allCount > ConstantValue.BeginCoordinate) {
+                            if (ConstantUtils.isCUSTOM()) {
+                                ConstantUtils.setScBiggerBigin(true,blanktype);
+                                ConstantUtils.setScBiggerFab(blanktype, cTerm);
+                            } else {
+                                ConstantUtils.setScBigin(true,blanktype);
+                                ConstantUtils.setScFab(blanktype,cTerm);
+                            }
+                        } else if (allCount < ConstantValue.EndCoordinate) {
+                            if (ConstantUtils.isCUSTOM()) {
+                                ConstantUtils.setScBigin(false, blanktype);
+                            } else {
+                                ConstantUtils.setScBiggerBigin(false, blanktype);
+                            }
+                        } else if (ConstantUtils.isScBiggerBigin(blanktype)||ConstantUtils.isScBigin(blanktype)){
+                            if (ConstantUtils.isCUSTOM()) {
+                                ConstantUtils.setScBiggerFab(blanktype, cTerm);
+                            } else {
+                                ConstantUtils.setScFab(blanktype,cTerm);
+                            }
                         }
-                    } else if (allCount < ConstantValue.EndCoordinate) {
-                        if (ConstantUtils.isCUSTOM()) {
-                            ConstantUtils.setScBigin(false, blanktype);
-                        } else {
-                            ConstantUtils.setScBiggerBigin(false, blanktype);
-                        }
-                    } else if (ConstantUtils.isScBiggerBigin(blanktype)||ConstantUtils.isScBigin(blanktype)){
-                        if (ConstantUtils.isCUSTOM()) {
-                            ConstantUtils.setScBiggerFab(blanktype, cTerm);
-                        } else {
-                            ConstantUtils.setScFab(blanktype,cTerm);
-                        }
-                    }
-                } else {
+                    } else {
 
-                    if (allCount > ConstantValue.BeginCoordinate) {
+                        if (allCount > ConstantValue.BeginCoordinate) {
 
-                        if (ConstantUtils.isCUSTOM()) {
-                            ConstantUtils.setFtBiggreBigin(true,blanktype);
-                            ConstantUtils.setFtBiggerFab(blanktype, cTerm);
-                        } else {
-                            ConstantUtils.setFtBigin(true,blanktype);
-                            ConstantUtils.setFtFab(blanktype, cTerm);
-                        }
-                    } else if (allCount < ConstantValue.EndCoordinate) {
+                            if (ConstantUtils.isCUSTOM()) {
+                                ConstantUtils.setFtBiggreBigin(true,blanktype);
+                                ConstantUtils.setFtBiggerFab(blanktype, cTerm);
+                            } else {
+                                ConstantUtils.setFtBigin(true,blanktype);
+                                ConstantUtils.setFtFab(blanktype, cTerm);
+                            }
+                        } else if (allCount < ConstantValue.EndCoordinate) {
 
-                        if (ConstantUtils.isCUSTOM()) {
-                            ConstantUtils.setFtBiggreBigin(false, blanktype);
-                        } else {
-                            ConstantUtils.setFtBigin(false, blanktype);
-                        }
-                    } else if (ConstantUtils.isFtBiggreBigin(blanktype)||ConstantUtils.isFtBigin(blanktype)){
-                        if (ConstantUtils.isCUSTOM()) {
-                            ConstantUtils.setFtBiggerFab(blanktype, cTerm);
-                        } else {
-                            ConstantUtils.setFtFab(blanktype, cTerm);
+                            if (ConstantUtils.isCUSTOM()) {
+                                ConstantUtils.setFtBiggreBigin(false, blanktype);
+                            } else {
+                                ConstantUtils.setFtBigin(false, blanktype);
+                            }
+                        } else if (ConstantUtils.isFtBiggreBigin(blanktype)||ConstantUtils.isFtBigin(blanktype)){
+                            if (ConstantUtils.isCUSTOM()) {
+                                ConstantUtils.setFtBiggerFab(blanktype, cTerm);
+                            } else {
+                                ConstantUtils.setFtFab(blanktype, cTerm);
+                            }
                         }
                     }
                 }
@@ -2002,6 +2048,7 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
                     UIUtils.postDelayed(new Runnable() {
                         @Override
                         public void run() {
+
                             doEnterSearchPage(buyPositionList, buyNumList, buyDifList, etAmount.getText().toString(), true, blanktype);
                         }
                     }, 5000 + time);
