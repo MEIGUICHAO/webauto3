@@ -18,8 +18,8 @@ public interface ConstantValue {
     public int CustomCoordinate = 3;
     public int fabMax = 6;
 
-    public int BeginCoordinate = 12;
-    public int EndCoordinate = 7;
+    public int BeginCoordinate = 9;
+    public int EndCoordinate = 5;
     public int dangerCoordinnate = 100;
 
     //blank
@@ -35,6 +35,7 @@ public interface ConstantValue {
 
     //    public String webUrl = "https://www.sx67.com/";
     public String webUrl = "https://www.sx67.com/mobile/#home/";
+    public int BIGGER_INT = 35;
 //    public String webUrl = "https://www.sx5566.com/mobile/#home/";
 //    public String webUrl = "https://www.baidu.com";
 

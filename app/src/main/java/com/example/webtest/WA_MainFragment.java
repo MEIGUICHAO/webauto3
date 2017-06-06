@@ -997,7 +997,6 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
         if ((mInts[length - 1] - mInts[length - 2]) >= blank || (mInts[length - 1] - mInts[length - 2]) >= blank) {
 //            if ((mInts[length - 1] - mInts[length - 2]) < 30) {
 //            }
-            allCount = allCount + 2;
             if (isDifNum) {
 
                 for (int j = length - 1; j >= length - 3; j--) {
@@ -1005,13 +1004,16 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
                     buyDifList.add(sortStr[j]);
                 }
             } else {
-                for (int j = length - 1; j >= length - 2; j--) {
-                    if (IsSamePositon) {
-                        learnResultStr2 = learnResultStr2 + sortStr[j] + "\n" + "************************" + "\n";
-                        buyPositionList.add(sortStr[j]);
-                    } else {
-                        learnResultStr3 = learnResultStr3 + sortStr[j] + "\n" + "************************" + "\n";
-                        buyNumList.add(sortStr[j]);
+                if (mInts[length - 1] >= ConstantValue.BIGGER_INT) {
+                    allCount = allCount + 2;
+                    for (int j = length - 1; j >= length - 2; j--) {
+                        if (IsSamePositon) {
+                            learnResultStr2 = learnResultStr2 + sortStr[j] + "\n" + "************************" + "\n";
+                            buyPositionList.add(sortStr[j]);
+                        } else {
+                            learnResultStr3 = learnResultStr3 + sortStr[j] + "\n" + "************************" + "\n";
+                            buyNumList.add(sortStr[j]);
+                        }
                     }
                 }
             }
