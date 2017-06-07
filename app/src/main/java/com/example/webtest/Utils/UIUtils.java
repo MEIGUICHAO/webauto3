@@ -1,6 +1,7 @@
 package com.example.webtest.Utils;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.os.Handler;
 
 import com.example.webtest.volley.App;
@@ -22,6 +23,19 @@ public class UIUtils {
         return App.getMainThreadId();
     }
 
+
+    /**
+     * 获取资源
+     */
+    public static Resources getResources() {
+        return getContext().getResources();
+    }
+    /**
+     * 获取文字
+     */
+    public static String getString(int resId) {
+        return getResources().getString(resId);
+    }
 
     /**
      * dip转换px

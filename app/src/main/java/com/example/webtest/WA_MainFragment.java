@@ -921,7 +921,7 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 
                         if (TextUtils.isEmpty(etBlank.getText().toString())) {
                             for (int j = 0; j < sameList.size(); j++) {
-                                learnResultStr2 = learnResultStr2 + sameList.get(j) + "\n" + "************************" + "\n";
+                                learnResultStr2 = learnResultStr2 + sameList.get(j) + "\n" + UIUtils.getString(R.string.line) + "\n";
                                 buyPositionList.add(sameList.get(j));
                             }
                             allCount = allCount + sameList.size();
@@ -936,7 +936,7 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
                         if (TextUtils.isEmpty(etBlank.getText().toString())) {
 
                             for (int j = 0; j < sameNumList.size(); j++) {
-                                learnResultStr3 = learnResultStr3 + sameNumList.get(j) + "\n" + "************************" + "\n";
+                                learnResultStr3 = learnResultStr3 + sameNumList.get(j) + "\n" + UIUtils.getString(R.string.line) + "\n";
                                 buyNumList.add(sameNumList.get(j));
                             }
                             allCount = allCount + sameNumList.size();
@@ -955,7 +955,7 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
                     learnResultStr2 = learnResultStr2 + "\n" + "不同位置:" + "\n";
                     getBlankBuyResult(difList, false, true);
 //                    for (int i = 0; i < difList.size(); i++) {
-//                        learnResultStr2 = learnResultStr2 + difList.get(i) + "\n" + "************************" + "\n";
+//                        learnResultStr2 = learnResultStr2 + difList.get(i) + "\n" + UIUtils.getString(R.string.line) + "\n";
 //                        buyDifList.add(difList.get(i));
 //                    }
 //                    allCount = allCount + difList.size();
@@ -966,7 +966,7 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
                 if (difList.size() >= 2) {
                     learnResultStr3 = learnResultStr3 + "\n" + "不同位置:" + "\n";
                     for (int i = 0; i < difList.size(); i++) {
-                        learnResultStr3 = learnResultStr3 + difList.get(i) + "\n" + "************************" + "\n";
+                        learnResultStr3 = learnResultStr3 + difList.get(i) + "\n" + UIUtils.getString(R.string.line) + "\n";
                     }
                 }
 
@@ -1000,7 +1000,7 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
             if (isDifNum) {
 
                 for (int j = length - 1; j >= length - 3; j--) {
-                    learnResultStr3 = learnResultStr3 + sortStr[j] + "\n" + "************************" + "\n";
+                    learnResultStr3 = learnResultStr3 + sortStr[j] + "\n" + UIUtils.getString(R.string.line) + "\n";
                     buyDifList.add(sortStr[j]);
                 }
             } else {
@@ -1008,10 +1008,10 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
                     allCount = allCount + 2;
                     for (int j = length - 1; j >= length - 2; j--) {
                         if (IsSamePositon) {
-                            learnResultStr2 = learnResultStr2 + sortStr[j] + "\n" + "************************" + "\n";
+                            learnResultStr2 = learnResultStr2 + sortStr[j] + "\n" + UIUtils.getString(R.string.line) + "\n";
                             buyPositionList.add(sortStr[j]);
                         } else {
-                            learnResultStr3 = learnResultStr3 + sortStr[j] + "\n" + "************************" + "\n";
+                            learnResultStr3 = learnResultStr3 + sortStr[j] + "\n" + UIUtils.getString(R.string.line) + "\n";
                             buyNumList.add(sortStr[j]);
                         }
                     }
@@ -1023,10 +1023,10 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 //            allCount = allCount + sameList.size();
 //            for (int j = 0; j < 2; j++) {
 //                if (IsSamePositon) {
-//                    learnResultStr2 = learnResultStr2 + sameList.get(j) + "\n" + "************************" + "\n";
+//                    learnResultStr2 = learnResultStr2 + sameList.get(j) + "\n" + UIUtils.getString(R.string.line) + "\n";
 //                    buyPositionList.add(sameList.get(j));
 //                } else {
-//                    learnResultStr3 = learnResultStr3 + sameList.get(j) + "\n" + "************************" + "\n";
+//                    learnResultStr3 = learnResultStr3 + sameList.get(j) + "\n" + UIUtils.getString(R.string.line) + "\n";
 //                    buyNumList.add(sameList.get(j));
 //                }
 //            }

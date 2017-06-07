@@ -2,6 +2,7 @@ package com.example.webtest.base;
 
 import android.content.Context;
 import android.os.Handler;
+import android.text.TextUtils;
 import android.util.Log;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebView;
@@ -12,6 +13,9 @@ import com.example.webtest.io.WA_Parameters;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 import static android.content.ContentValues.TAG;
 
@@ -26,6 +30,10 @@ public class WA_YundaFragment extends WA_BaseFragment {
     private String logicStr;
     private String myAmount = "";
     private int[] fiboArr;
+    private HashMap<String, Integer> buyPositionAcountMap;
+    private HashMap<String, Integer> buyNumAcountMap;
+    private HashMap<String, String> templePositionAcountMap;
+    private HashMap<String, String> templeNumAcountMap;
 
 
     protected enum SearchType {
@@ -218,10 +226,26 @@ public class WA_YundaFragment extends WA_BaseFragment {
         ArrayList<Integer> smallerList = new ArrayList<Integer>();
         ArrayList<Integer> smallerDifList = new ArrayList<Integer>();
 
+        if (null == buyPositionAcountMap) {
+            buyPositionAcountMap = new HashMap<String, Integer>();
+        }
+        if (null == buyNumAcountMap) {
+            buyNumAcountMap = new HashMap<String, Integer>();
+        }
+        if (null == templePositionAcountMap) {
+            templePositionAcountMap = new HashMap<String, String>();
+        }
+        if (null == templeNumAcountMap) {
+            templeNumAcountMap = new HashMap<String, String>();
+        }
+        templePositionAcountMap.clear();
+        templeNumAcountMap.clear();
+
 
         for (int i = 0; i < buyPositionList.size(); i++) {
             buylist.add(buyPositionList.get(i));
             if (i % 2 != 0) {
+                buyAcountMap(buyPositionList, i, true);
                 String[] split = buyPositionList.get(i).split("数字：");
                 int smarllInt = Integer.parseInt(split[2]);
                 smallerList.add(smarllInt);
@@ -231,6 +255,7 @@ public class WA_YundaFragment extends WA_BaseFragment {
         for (int i = 0; i < buyNumList.size(); i++) {
             buylist.add(buyNumList.get(i));
             if (i % 2 != 0) {
+                buyAcountMap(buyNumList, i, false);
                 String[] split = buyNumList.get(i).split("数字：");
                 int smarllInt = Integer.parseInt(split[2]);
                 smallerList.add(smarllInt);
@@ -251,76 +276,120 @@ public class WA_YundaFragment extends WA_BaseFragment {
 
         if (buyPositionList.size() > 0) {
             if (ConstantUtils.isCUSTOM()) {
-                getMethod(buyPositionList, amount, "100", IS_Auto, typeBlank, 0);
+                getMethod(buyPositionList, amount, "100", IS_Auto, typeBlank, 0, true);
             } else {
-                getMethod(buyPositionList, amount, "100", IS_Auto, typeBlank, 0);
+                getMethod(buyPositionList, amount, "100", IS_Auto, typeBlank, 0, true);
             }
             logicStr = logicStr + "commitData(1000);";
         }
         if (buyNumList.size() > 0) {
             if (ConstantUtils.isCUSTOM()) {
-                getMethod(buyNumList, amount, "3500", IS_Auto, typeBlank, 0);
+                getMethod(buyNumList, amount, "3500", IS_Auto, typeBlank, 0, false);
             } else {
-                getMethod(buyNumList, amount, "3500", IS_Auto, typeBlank, 0);
+                getMethod(buyNumList, amount, "3500", IS_Auto, typeBlank, 0, false);
             }
             logicStr = logicStr + "commitData(4500);";
         }
         String completeJs = doAutoTest(logicStr);
         loadUrl(webView, completeJs);
+        resetBuyAcountMap();
     }
 
-    private void getMethod(ArrayList<String> buyPositionList, String amount, String time, boolean IS_AUTO, int typeBlank, int smarllerInts) {
+    private void resetBuyAcountMap() {
+        Iterator positionIter = buyPositionAcountMap.entrySet().iterator();
+        ArrayList<String> positionKeys = new ArrayList<String>();
+        while (positionIter.hasNext()){
+            Map.Entry entry = (Map.Entry) positionIter.next();
+            String key = (String) entry.getKey();
+            if (TextUtils.isEmpty(templePositionAcountMap.get(key))) {
+                positionKeys.add(key);
+            }
+        }
+
+        Iterator numIter = buyNumAcountMap.entrySet().iterator();
+        ArrayList<String> numKeys = new ArrayList<String>();
+        while (numIter.hasNext()){
+            Map.Entry entry = (Map.Entry) numIter.next();
+            String key = (String) entry.getKey();
+            if (TextUtils.isEmpty(templeNumAcountMap.get(key))) {
+                numKeys.add(key);
+            }
+        }
+
+        for (int i = 0; i < positionKeys.size(); i++) {
+            buyPositionAcountMap.remove(positionKeys.get(i));
+        }
+        for (int i = 0; i < numKeys.size(); i++) {
+            buyNumAcountMap.remove(numKeys.get(i));
+        }
+
+    }
+
+    private void buyAcountMap(ArrayList<String> buyList, int i, boolean isPosition) {
+        if (isPosition) {
+            templePositionAcountMap.put(buyList.get(i), i + "");
+            templePositionAcountMap.put(buyList.get(i - 1), i + "");
+
+            if (null != buyPositionAcountMap.get(buyList.get(i))) {
+                Integer integer = buyPositionAcountMap.get(buyList.get(i));
+                integer = integer++;
+                if (integer > 6) {
+                    integer = 0;
+                }
+                buyPositionAcountMap.put(buyList.get(i), integer);
+                buyPositionAcountMap.put(buyList.get(i - 1), integer);
+            } else {
+                buyPositionAcountMap.put(buyList.get(i), 0);
+                buyPositionAcountMap.put(buyList.get(i - 1), 0);
+            }
+        } else {
+            templeNumAcountMap.put(buyList.get(i), i + "");
+            templeNumAcountMap.put(buyList.get(i - 1), i + "");
+
+
+            if (null != buyNumAcountMap.get(buyList.get(i))) {
+                Integer integer = buyNumAcountMap.get(buyList.get(i));
+                integer = integer++;
+                if (integer > 6) {
+                    integer = 0;
+                }
+                buyNumAcountMap.put(buyList.get(i), integer);
+                buyNumAcountMap.put(buyList.get(i - 1), integer);
+            } else {
+                buyNumAcountMap.put(buyList.get(i), 0);
+                buyNumAcountMap.put(buyList.get(i - 1), 0);
+            }
+        }
+
+    }
+
+    private void getMethod(ArrayList<String> buyPositionList, String amount, String time, boolean IS_AUTO, int typeBlank, int smarllerInts, boolean isPosition) {
         for (int i = 0; i < buyPositionList.size(); i++) {
             String[] split = buyPositionList.get(i).split("数字：");
             int num = (Integer.parseInt(split[0]) - 1) * 10 + Integer.parseInt(split[1]);
             if (IS_AUTO) {
-
-//                if (!ConstantUtils.isCUSTOM()) {
-//
-//                    if (i % 2 == 0) {
-//                        String[] splitAmount = buyPositionList.get(i).split("数字：");
-//                        String[] splitAmount2 = buyPositionList.get(i + 1).split("数字：");
-//                        int sameInt = ConstantUtils.autoSame10;
-//                        switch (typeBlank) {
-//                            case ConstantValue.TYPE_BLANK_20:
-//                                //TODO
-//                                sameInt = ConstantUtils.autoSame20;
-//                                break;
-//                            case ConstantValue.TYPE_BLANK_15:
-//                                sameInt = ConstantUtils.autoSame15;
-//                                break;
-//                            case ConstantValue.TYPE_BLANK_10:
-//                                sameInt = ConstantUtils.autoSame10;
-//                                break;
-//                        }
-//                        myAmount = (Integer.parseInt(splitAmount2[2]) - Integer.parseInt(splitAmount[2])) > 0 ? getCustomAmount(Integer.parseInt(splitAmount[2]), typeBlank) : getCustomAmount(Integer.parseInt(splitAmount2[2]), typeBlank);
-//                    }
-//                } else {
-//
-//                    if (i % 2 == 0) {
-//                        String[] splitAmount = buyPositionList.get(i).split("数字：");
-//                        String[] splitAmount2 = buyPositionList.get(i + 1).split("数字：");
-//                        if ((Integer.parseInt(splitAmount2[2]) >= smarllerInts) && (Integer.parseInt(splitAmount[2]) >= smarllerInts)) {
-//                            myAmount = getCustomAmount(smarllerInts, typeBlank);
-//                        } else {
-//                            myAmount = getCustomAmount(Integer.parseInt(splitAmount2[2]), typeBlank);
-//                        }
-//
-//                    }
+//                int fabInt = (ConstantUtils.getFabInt(ConstantUtils.isSc(), ConstantUtils.isCUSTOM(), typeBlank)-1);
+//                if (fabInt < 0) {
+//                    fabInt = 0;
 //                }
-                int fabInt = (ConstantUtils.getFabInt(ConstantUtils.isSc(), ConstantUtils.isCUSTOM(), typeBlank)-1);
-                if (fabInt < 0) {
-                    fabInt = 0;
-                }
-                if (ConstantUtils.isCUSTOM()) {
-                    myAmount = ConstantUtils.originAmount * 2*fiboArr[fabInt] + "";
+//                if (ConstantUtils.isCUSTOM()) {
+//                    myAmount = ConstantUtils.originAmount * 2*fiboArr[fabInt] + "";
+//                } else {
+//                    myAmount = ConstantUtils.originAmount * fiboArr[fabInt] + "";
+//                }
+//                int money = Integer.parseInt(myAmount);
+//
+                int position = 0;
+                if (isPosition) {
+                    position = buyPositionAcountMap.get(buyPositionList.get(i));
                 } else {
-                    myAmount = ConstantUtils.originAmount * fiboArr[fabInt] + "";
+                    position = buyNumAcountMap.get(buyPositionList.get(i));
                 }
-                int money = Integer.parseInt(myAmount);
+                int money = fiboArr[position];
                 if (i % 2 == 0) {
                     money = money * 2;
                 }
+
                 logicStr = logicStr + "selectNumRange(" + num + "," + money + "," + time + ");";
             } else {
                 logicStr = logicStr + "selectNumRange(" + num + "," + amount + "," + time + ");";
