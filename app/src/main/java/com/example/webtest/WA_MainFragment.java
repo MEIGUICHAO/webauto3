@@ -2044,6 +2044,7 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
                     }
                 }
 
+
                 if ((!ConstantUtils.isCUSTOM()&&IS_SC&&ConstantUtils.isScBigin(blanktype))||(!ConstantUtils.isCUSTOM()&&!IS_SC&&ConstantUtils.isFtBigin(blanktype))
                         ||(ConstantUtils.isCUSTOM()&&IS_SC&&ConstantUtils.isScBiggerBigin(blanktype))||(ConstantUtils.isCUSTOM()&&!IS_SC&&ConstantUtils.isFtBiggreBigin(blanktype))) {
 
