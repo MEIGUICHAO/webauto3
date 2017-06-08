@@ -6,5 +6,7 @@
     <string name="hello_world">Hello world!</string>
     <string name="AutoDeal">AutoDeal</string>
     <string name="custom">custom</string>
+    <string name="line">************************</string>
+    <string name="splitNum">数字：</string>
 
 </resources>
