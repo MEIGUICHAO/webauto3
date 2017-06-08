@@ -8,7 +8,9 @@ import android.webkit.JavascriptInterface;
 import android.webkit.WebView;
 import android.widget.Toast;
 
+import com.example.webtest.R;
 import com.example.webtest.Utils.ConstantUtils;
+import com.example.webtest.Utils.UIUtils;
 import com.example.webtest.io.WA_Parameters;
 
 import java.io.IOException;
@@ -273,7 +275,7 @@ public class WA_YundaFragment extends WA_BaseFragment {
             buylist.add(buyPositionList.get(i));
             if (i % 2 != 0) {
                 buyAcountMap(buyPositionList, i, true);
-                String[] split = buyPositionList.get(i).split("数字：");
+                String[] split = buyPositionList.get(i).split(UIUtils.getString(R.string.splitNum));
                 int smarllInt = Integer.parseInt(split[2]);
                 smallerList.add(smarllInt);
             }
@@ -283,7 +285,7 @@ public class WA_YundaFragment extends WA_BaseFragment {
             buylist.add(buyNumList.get(i));
             if (i % 2 != 0) {
                 buyAcountMap(buyNumList, i, false);
-                String[] split = buyNumList.get(i).split("数字：");
+                String[] split = buyNumList.get(i).split(UIUtils.getString(R.string.splitNum));
                 int smarllInt = Integer.parseInt(split[2]);
                 smallerList.add(smarllInt);
             }
@@ -292,7 +294,7 @@ public class WA_YundaFragment extends WA_BaseFragment {
         for (int i = 0; i < buyDifList.size(); i++) {
             buydiflist.add(buyDifList.get(i));
             if (i % 2 != 0) {
-                String[] split = buyDifList.get(i).split("数字：");
+                String[] split = buyDifList.get(i).split(UIUtils.getString(R.string.splitNum));
                 int smarllInt = Integer.parseInt(split[2]);
                 smallerDifList.add(smarllInt);
             }
@@ -387,7 +389,12 @@ public class WA_YundaFragment extends WA_BaseFragment {
 
     }
 
-    private void buyAcountMap(ArrayList<String> buyList, int i, boolean isPosition) {
+    private void buyAcountMap(ArrayList<String> mBuyList, int i, boolean isPosition) {
+        ArrayList<String> buyList = new ArrayList<String>();
+        for (int j = 0; j < mBuyList.size(); j++) {
+            String[] split = mBuyList.get(j).split(UIUtils.getString(R.string.splitNum));
+            buyList.add(split[0] + UIUtils.getString(R.string.splitNum) + split[1]);
+        }
         if (isPosition) {
 
             if (IS_SC) {
@@ -507,9 +514,14 @@ public class WA_YundaFragment extends WA_BaseFragment {
 
     }
 
-    private void getMethod(ArrayList<String> buyPositionList, String amount, String time, boolean IS_AUTO, int typeBlank, int smarllerInts, boolean isPosition) {
+    private void getMethod(ArrayList<String> buylist, String amount, String time, boolean IS_AUTO, int typeBlank, int smarllerInts, boolean isPosition) {
+        ArrayList<String> buyPositionList = new ArrayList<String>();
+        for (int j = 0; j < buylist.size(); j++) {
+            String[] split = buylist.get(j).split(UIUtils.getString(R.string.splitNum));
+            buyPositionList.add(split[0] + UIUtils.getString(R.string.splitNum) + split[1]);
+        }
         for (int i = 0; i < buyPositionList.size(); i++) {
-            String[] split = buyPositionList.get(i).split("数字：");
+            String[] split = buyPositionList.get(i).split(UIUtils.getString(R.string.splitNum));
             int num = (Integer.parseInt(split[0]) - 1) * 10 + Integer.parseInt(split[1]);
             if (IS_AUTO) {
 //                int fabInt = (ConstantUtils.getFabInt(ConstantUtils.isSc(), ConstantUtils.isCUSTOM(), typeBlank)-1);
@@ -558,7 +570,7 @@ public class WA_YundaFragment extends WA_BaseFragment {
 //    private void getCustomAmount(ArrayList<String> buyPositionList, int typeBlank) {
 //        int[] ints = new int[buyPositionList.size()];
 //        for (int i = 0; i < buyPositionList.size(); i++) {
-//            String[] split = buyPositionList.get(i).split("数字：");
+//            String[] split = buyPositionList.get(i).split(UIUtils.getString(R.string.splitNum));
 //            ints[i] = Integer.parseInt(split[2]);
 //        }
 //        sortInt(ints);
