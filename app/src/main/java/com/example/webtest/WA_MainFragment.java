@@ -261,7 +261,6 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 
     private String Url;
 
-    private boolean IS_SC = false;
     private boolean IS_POLLING = false;
 
     private List oneList = new ArrayList<Integer>();
@@ -1895,6 +1894,17 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
         }
         try {
             Log.e(TAG, "CTrem: " + mList.get(0).getCTerm());
+            if (IS_SC) {
+                ScCurrentCTrem = mList.get(0).getCTerm();
+                if (TextUtils.isEmpty(ScLastCTrem)) {
+                    ScLastCTrem = mList.get(0).getCTerm();
+                }
+            } else {
+                FtCurrentCTrem = mList.get(0).getCTerm();
+                if (TextUtils.isEmpty(FtLastCTrem)) {
+                    FtLastCTrem = mList.get(0).getCTerm();
+                }
+            }
         } catch (Exception e) {
 
         }
@@ -1902,13 +1912,24 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 //        setCustomDealData(ConstantValue.autoCustomSame20 + "", ConstantValue.autoCustomSame15 + "", ConstantValue.autoCustomSame10 + "", true, ConstantValue.CustomCoordinate);
         ConstantUtils.setIsSc(IS_SC);
         setDealData(0,ConstantValue.autoSame20 + "", ConstantValue.autoSame15 + "", ConstantValue.autoSame10 + "", false, ConstantValue.ClassCoordinate);
-        delayDeal(ConstantValue.autoBlank20, ConstantValue.autoSame20 + ConstantUtils.getFabInt(IS_SC, false, ConstantValue.TYPE_BLANK_20), ConstantValue.TYPE_BLANK_20, 0);
-        delayDeal(ConstantValue.autoBlank15, ConstantValue.autoSame15 + ConstantUtils.getFabInt(IS_SC, false, ConstantValue.TYPE_BLANK_15), ConstantValue.TYPE_BLANK_15, 16);
+//        delayDeal(ConstantValue.autoBlank20, ConstantValue.autoSame20 + ConstantUtils.getFabInt(IS_SC, false, ConstantValue.TYPE_BLANK_20), ConstantValue.TYPE_BLANK_20, 0);
+//        delayDeal(ConstantValue.autoBlank15, ConstantValue.autoSame15 + ConstantUtils.getFabInt(IS_SC, false, ConstantValue.TYPE_BLANK_15), ConstantValue.TYPE_BLANK_15, 16);
         delayDeal(ConstantValue.autoBlank10, ConstantValue.autoSame10 + ConstantUtils.getFabInt(IS_SC, false, ConstantValue.TYPE_BLANK_10), ConstantValue.TYPE_BLANK_10, 32);
-        setDealData(48, ConstantValue.autoCustomSame20 + "", ConstantValue.autoCustomSame15 + "", ConstantValue.autoCustomSame10 + "", true, ConstantValue.ClassCoordinate);
-        delayDeal(ConstantValue.autoBlank20, ConstantValue.autoCustomSame20 + ConstantUtils.getFabInt(IS_SC, true, ConstantValue.TYPE_BLANK_20), ConstantValue.TYPE_BLANK_20, 50);
-        delayDeal(ConstantValue.autoBlank15, ConstantValue.autoCustomSame15 + ConstantUtils.getFabInt(IS_SC, true, ConstantValue.TYPE_BLANK_15), ConstantValue.TYPE_BLANK_15, 66);
-        delayDeal(ConstantValue.autoBlank10, ConstantValue.autoCustomSame10 + ConstantUtils.getFabInt(IS_SC, true, ConstantValue.TYPE_BLANK_10), ConstantValue.TYPE_BLANK_10, 82);
+//        setDealData(48, ConstantValue.autoCustomSame20 + "", ConstantValue.autoCustomSame15 + "", ConstantValue.autoCustomSame10 + "", true, ConstantValue.ClassCoordinate);
+//        delayDeal(ConstantValue.autoBlank20, ConstantValue.autoCustomSame20 + ConstantUtils.getFabInt(IS_SC, true, ConstantValue.TYPE_BLANK_20), ConstantValue.TYPE_BLANK_20, 50);
+//        delayDeal(ConstantValue.autoBlank15, ConstantValue.autoCustomSame15 + ConstantUtils.getFabInt(IS_SC, true, ConstantValue.TYPE_BLANK_15), ConstantValue.TYPE_BLANK_15, 66);
+//        delayDeal(ConstantValue.autoBlank10, ConstantValue.autoCustomSame10 + ConstantUtils.getFabInt(IS_SC, true, ConstantValue.TYPE_BLANK_10), ConstantValue.TYPE_BLANK_10, 82);
+
+        UIUtils.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (IS_SC) {
+                    ScLastCTrem = ScCurrentCTrem;
+                } else {
+                    FtLastCTrem = FtCurrentCTrem;
+                }
+            }
+        }, 96000);
 
 //        setDealData(38);
 //        delayDeal(ConstantValue.autoBlank20, ConstantValue.autoSame20, ConstantValue.TYPE_BLANK_20, 40);
@@ -1993,69 +2014,68 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
                     Log.e(TAG, "position: " + learnResultStr2);
                     Log.e(TAG, "num: " + learnResultStr3);
                 }
-                if (!DANGER) {
-                    if (IS_SC) {
-                        if (allCount > ConstantValue.BeginCoordinate) {
-                            if (ConstantUtils.isCUSTOM()) {
-                                ConstantUtils.setScBiggerBigin(true,blanktype);
-                                ConstantUtils.setScBiggerFab(blanktype, cTerm);
-                            } else {
-                                ConstantUtils.setScBigin(true,blanktype);
-                                ConstantUtils.setScFab(blanktype,cTerm);
-                            }
-                        } else if (allCount < ConstantValue.EndCoordinate) {
-                            if (ConstantUtils.isCUSTOM()) {
-                                ConstantUtils.setScBigin(false, blanktype);
-                            } else {
-                                ConstantUtils.setScBiggerBigin(false, blanktype);
-                            }
-                        } else if (ConstantUtils.isScBiggerBigin(blanktype)||ConstantUtils.isScBigin(blanktype)){
-                            if (ConstantUtils.isCUSTOM()) {
-                                ConstantUtils.setScBiggerFab(blanktype, cTerm);
-                            } else {
-                                ConstantUtils.setScFab(blanktype,cTerm);
-                            }
-                        }
-                    } else {
+//                if (!DANGER) {
+//                    if (IS_SC) {
+//                        if (allCount > ConstantValue.BeginCoordinate) {
+//                            if (ConstantUtils.isCUSTOM()) {
+//                                ConstantUtils.setScBiggerBigin(true,blanktype);
+//                                ConstantUtils.setScBiggerFab(blanktype, cTerm);
+//                            } else {
+//                                ConstantUtils.setScBigin(true,blanktype);
+//                                ConstantUtils.setScFab(blanktype,cTerm);
+//                            }
+//                        } else if (allCount < ConstantValue.EndCoordinate) {
+//                            if (ConstantUtils.isCUSTOM()) {
+//                                ConstantUtils.setScBigin(false, blanktype);
+//                            } else {
+//                                ConstantUtils.setScBiggerBigin(false, blanktype);
+//                            }
+//                        } else if (ConstantUtils.isScBiggerBigin(blanktype)||ConstantUtils.isScBigin(blanktype)){
+//                            if (ConstantUtils.isCUSTOM()) {
+//                                ConstantUtils.setScBiggerFab(blanktype, cTerm);
+//                            } else {
+//                                ConstantUtils.setScFab(blanktype,cTerm);
+//                            }
+//                        }
+//                    } else {
+//
+//                        if (allCount > ConstantValue.BeginCoordinate) {
+//
+//                            if (ConstantUtils.isCUSTOM()) {
+//                                ConstantUtils.setFtBiggreBigin(true,blanktype);
+//                                ConstantUtils.setFtBiggerFab(blanktype, cTerm);
+//                            } else {
+//                                ConstantUtils.setFtBigin(true,blanktype);
+//                                ConstantUtils.setFtFab(blanktype, cTerm);
+//                            }
+//                        } else if (allCount < ConstantValue.EndCoordinate) {
+//
+//                            if (ConstantUtils.isCUSTOM()) {
+//                                ConstantUtils.setFtBiggreBigin(false, blanktype);
+//                            } else {
+//                                ConstantUtils.setFtBigin(false, blanktype);
+//                            }
+//                        } else if (ConstantUtils.isFtBiggreBigin(blanktype)||ConstantUtils.isFtBigin(blanktype)){
+//                            if (ConstantUtils.isCUSTOM()) {
+//                                ConstantUtils.setFtBiggerFab(blanktype, cTerm);
+//                            } else {
+//                                ConstantUtils.setFtFab(blanktype, cTerm);
+//                            }
+//                        }
+//                    }
+//                }
 
-                        if (allCount > ConstantValue.BeginCoordinate) {
 
-                            if (ConstantUtils.isCUSTOM()) {
-                                ConstantUtils.setFtBiggreBigin(true,blanktype);
-                                ConstantUtils.setFtBiggerFab(blanktype, cTerm);
-                            } else {
-                                ConstantUtils.setFtBigin(true,blanktype);
-                                ConstantUtils.setFtFab(blanktype, cTerm);
-                            }
-                        } else if (allCount < ConstantValue.EndCoordinate) {
+//                if ((!ConstantUtils.isCUSTOM()&&IS_SC&&ConstantUtils.isScBigin(blanktype))||(!ConstantUtils.isCUSTOM()&&!IS_SC&&ConstantUtils.isFtBigin(blanktype))
+//                        ||(ConstantUtils.isCUSTOM()&&IS_SC&&ConstantUtils.isScBiggerBigin(blanktype))||(ConstantUtils.isCUSTOM()&&!IS_SC&&ConstantUtils.isFtBiggreBigin(blanktype))) {
 
-                            if (ConstantUtils.isCUSTOM()) {
-                                ConstantUtils.setFtBiggreBigin(false, blanktype);
-                            } else {
-                                ConstantUtils.setFtBigin(false, blanktype);
-                            }
-                        } else if (ConstantUtils.isFtBiggreBigin(blanktype)||ConstantUtils.isFtBigin(blanktype)){
-                            if (ConstantUtils.isCUSTOM()) {
-                                ConstantUtils.setFtBiggerFab(blanktype, cTerm);
-                            } else {
-                                ConstantUtils.setFtFab(blanktype, cTerm);
-                            }
-                        }
+                UIUtils.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        doEnterSearchPage(buyPositionList, buyNumList, buyDifList, etAmount.getText().toString(), true, blanktype);
                     }
-                }
-
-
-                if ((!ConstantUtils.isCUSTOM()&&IS_SC&&ConstantUtils.isScBigin(blanktype))||(!ConstantUtils.isCUSTOM()&&!IS_SC&&ConstantUtils.isFtBigin(blanktype))
-                        ||(ConstantUtils.isCUSTOM()&&IS_SC&&ConstantUtils.isScBiggerBigin(blanktype))||(ConstantUtils.isCUSTOM()&&!IS_SC&&ConstantUtils.isFtBiggreBigin(blanktype))) {
-
-                    UIUtils.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-
-                            doEnterSearchPage(buyPositionList, buyNumList, buyDifList, etAmount.getText().toString(), true, blanktype);
-                        }
-                    }, 5000 + time);
-                }
+                }, 5000 + time);
+//                }
             }
         }, 5000 + time);
     }

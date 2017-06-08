@@ -36,8 +36,8 @@ public interface ConstantValue {
     //    public String webUrl = "https://www.sx67.com/";
 //    public String webUrl = "https://www.sx67.com/mobile/#home/";
     public int BIGGER_INT = 35;
-//    public String webUrl = "https://www.sx5566.com/mobile/#home/";
-    public String webUrl = "";
+    public String webUrl = "https://www.sx5566.com/mobile/#home/";
+//    public String webUrl = "";
 
 
 }

@@ -35,6 +35,18 @@ public class WA_YundaFragment extends WA_BaseFragment {
     private HashMap<String, String> templePositionAcountMap;
     private HashMap<String, String> templeNumAcountMap;
 
+    private HashMap<String, Integer> buyFtPositionAcountMap;
+    private HashMap<String, Integer> buyFtNumAcountMap;
+    private HashMap<String, String> templeFtPositionAcountMap;
+    private HashMap<String, String> templeFtNumAcountMap;
+
+    protected String ScCurrentCTrem;
+    protected String ScLastCTrem;
+    protected String FtCurrentCTrem;
+    protected String FtLastCTrem;
+    protected boolean IS_SC = false;
+
+
 
     protected enum SearchType {
         All, Shop, Mall
@@ -241,6 +253,21 @@ public class WA_YundaFragment extends WA_BaseFragment {
         templePositionAcountMap.clear();
         templeNumAcountMap.clear();
 
+        if (null == buyFtPositionAcountMap) {
+            buyFtPositionAcountMap = new HashMap<String, Integer>();
+        }
+        if (null == buyFtNumAcountMap) {
+            buyFtNumAcountMap = new HashMap<String, Integer>();
+        }
+        if (null == templeFtPositionAcountMap) {
+            templeFtPositionAcountMap = new HashMap<String, String>();
+        }
+        if (null == templeFtNumAcountMap) {
+            templeFtNumAcountMap = new HashMap<String, String>();
+        }
+        templeFtPositionAcountMap.clear();
+        templeFtNumAcountMap.clear();
+
 
         for (int i = 0; i < buyPositionList.size(); i++) {
             buylist.add(buyPositionList.get(i));
@@ -296,69 +323,186 @@ public class WA_YundaFragment extends WA_BaseFragment {
     }
 
     private void resetBuyAcountMap() {
-        Iterator positionIter = buyPositionAcountMap.entrySet().iterator();
-        ArrayList<String> positionKeys = new ArrayList<String>();
-        while (positionIter.hasNext()){
-            Map.Entry entry = (Map.Entry) positionIter.next();
-            String key = (String) entry.getKey();
-            if (TextUtils.isEmpty(templePositionAcountMap.get(key))) {
-                positionKeys.add(key);
-            }
-        }
+        if (IS_SC) {
 
-        Iterator numIter = buyNumAcountMap.entrySet().iterator();
-        ArrayList<String> numKeys = new ArrayList<String>();
-        while (numIter.hasNext()){
-            Map.Entry entry = (Map.Entry) numIter.next();
-            String key = (String) entry.getKey();
-            if (TextUtils.isEmpty(templeNumAcountMap.get(key))) {
-                numKeys.add(key);
+            Iterator positionIter = buyPositionAcountMap.entrySet().iterator();
+            ArrayList<String> positionKeys = new ArrayList<String>();
+            while (positionIter.hasNext()) {
+                Map.Entry entry = (Map.Entry) positionIter.next();
+                String key = (String) entry.getKey();
+                if (TextUtils.isEmpty(templePositionAcountMap.get(key))) {
+                    positionKeys.add(key);
+                }
             }
-        }
 
-        for (int i = 0; i < positionKeys.size(); i++) {
-            buyPositionAcountMap.remove(positionKeys.get(i));
-        }
-        for (int i = 0; i < numKeys.size(); i++) {
-            buyNumAcountMap.remove(numKeys.get(i));
+            Iterator numIter = buyNumAcountMap.entrySet().iterator();
+            ArrayList<String> numKeys = new ArrayList<String>();
+            while (numIter.hasNext()) {
+                Map.Entry entry = (Map.Entry) numIter.next();
+                String key = (String) entry.getKey();
+                if (TextUtils.isEmpty(templeNumAcountMap.get(key))) {
+                    numKeys.add(key);
+                }
+            }
+
+            for (int i = 0; i < positionKeys.size(); i++) {
+                Log.d(TAG, "positionKeys: " + positionKeys.get(i));
+                buyPositionAcountMap.remove(positionKeys.get(i));
+            }
+            for (int i = 0; i < numKeys.size(); i++) {
+                Log.d(TAG, "numKeys: " + numKeys.get(i));
+                buyNumAcountMap.remove(numKeys.get(i));
+            }
+        } else {
+
+            Iterator positionIter = buyFtPositionAcountMap.entrySet().iterator();
+            ArrayList<String> positionKeys = new ArrayList<String>();
+            while (positionIter.hasNext()){
+                Map.Entry entry = (Map.Entry) positionIter.next();
+                String key = (String) entry.getKey();
+                if (TextUtils.isEmpty(templeFtPositionAcountMap.get(key))) {
+                    positionKeys.add(key);
+                }
+            }
+
+            Iterator numIter = buyFtNumAcountMap.entrySet().iterator();
+            ArrayList<String> numKeys = new ArrayList<String>();
+            while (numIter.hasNext()){
+                Map.Entry entry = (Map.Entry) numIter.next();
+                String key = (String) entry.getKey();
+                if (TextUtils.isEmpty(templeFtNumAcountMap.get(key))) {
+                    numKeys.add(key);
+                }
+            }
+
+            for (int i = 0; i < positionKeys.size(); i++) {
+                Log.d(TAG, "positionFtKeys: " + positionKeys.get(i));
+                buyFtPositionAcountMap.remove(positionKeys.get(i));
+            }
+            for (int i = 0; i < numKeys.size(); i++) {
+                Log.d(TAG, "numFtKeys: " + numKeys.get(i));
+                buyFtNumAcountMap.remove(numKeys.get(i));
+            }
         }
 
     }
 
     private void buyAcountMap(ArrayList<String> buyList, int i, boolean isPosition) {
         if (isPosition) {
-            templePositionAcountMap.put(buyList.get(i), i + "");
-            templePositionAcountMap.put(buyList.get(i - 1), i + "");
 
-            if (null != buyPositionAcountMap.get(buyList.get(i))) {
-                Integer integer = buyPositionAcountMap.get(buyList.get(i));
-                integer = integer++;
-                if (integer > 6) {
-                    integer = 0;
-                }
-                buyPositionAcountMap.put(buyList.get(i), integer);
-                buyPositionAcountMap.put(buyList.get(i - 1), integer);
+            if (IS_SC) {
+                templePositionAcountMap.put(buyList.get(i), i + "");
+                templePositionAcountMap.put(buyList.get(i - 1), i + "");
             } else {
-                buyPositionAcountMap.put(buyList.get(i), 0);
-                buyPositionAcountMap.put(buyList.get(i - 1), 0);
+                templeFtPositionAcountMap.put(buyList.get(i), i + "");
+                templeFtPositionAcountMap.put(buyList.get(i - 1), i + "");
+            }
+
+            if (IS_SC) {
+                if (null != buyPositionAcountMap.get(buyList.get(i))) {
+                    int integer = buyPositionAcountMap.get(buyList.get(i));
+                    if (!ScLastCTrem.equals(ScCurrentCTrem)) {
+                        integer = integer + 1;
+                        if (integer > 6) {
+                            integer = 0;
+                        }
+                    }
+                    buyPositionAcountMap.put(buyList.get(i), integer);
+                    buyPositionAcountMap.put(buyList.get(i - 1), integer);
+                    Log.d(TAG, "buyPosition: " + buyList.get(i));
+                    Log.d(TAG, "buyPosition: " + buyList.get(i - 1));
+                    Log.d(TAG, "buyInteger: " + integer);
+                } else {
+                    buyPositionAcountMap.put(buyList.get(i), 0);
+                    buyPositionAcountMap.put(buyList.get(i - 1), 0);
+
+                    Log.d(TAG, "buyPosition: " + buyList.get(i));
+                    Log.d(TAG, "buyPosition: " + buyList.get(i - 1));
+                }
+            } else {
+                if (null != buyFtPositionAcountMap.get(buyList.get(i))) {
+                    int integer = buyFtPositionAcountMap.get(buyList.get(i));
+                    if (!FtLastCTrem.equals(FtCurrentCTrem)) {
+                        integer = integer + 1;
+                        if (integer > 6) {
+                            integer = 0;
+                        }
+                    }
+
+                    buyFtPositionAcountMap.put(buyList.get(i), integer);
+                    buyFtPositionAcountMap.put(buyList.get(i - 1), integer);
+                    Log.d(TAG, "buyFtPosition: " + buyList.get(i));
+                    Log.d(TAG, "buyFtPosition: " + buyList.get(i - 1));
+                    Log.d(TAG, "buyFtInteger: " + integer);
+                } else {
+                    buyFtPositionAcountMap.put(buyList.get(i), 0);
+                    buyFtPositionAcountMap.put(buyList.get(i - 1), 0);
+                    Log.d(TAG, "buyFtPosition: " + buyList.get(i));
+                    Log.d(TAG, "buyFtPosition: " + buyList.get(i - 1));
+                }
             }
         } else {
-            templeNumAcountMap.put(buyList.get(i), i + "");
-            templeNumAcountMap.put(buyList.get(i - 1), i + "");
-
-
-            if (null != buyNumAcountMap.get(buyList.get(i))) {
-                Integer integer = buyNumAcountMap.get(buyList.get(i));
-                integer = integer++;
-                if (integer > 6) {
-                    integer = 0;
-                }
-                buyNumAcountMap.put(buyList.get(i), integer);
-                buyNumAcountMap.put(buyList.get(i - 1), integer);
+            if (IS_SC) {
+                templeNumAcountMap.put(buyList.get(i), i + "");
+                templeNumAcountMap.put(buyList.get(i - 1), i + "");
             } else {
-                buyNumAcountMap.put(buyList.get(i), 0);
-                buyNumAcountMap.put(buyList.get(i - 1), 0);
+                templeFtNumAcountMap.put(buyList.get(i), i + "");
+                templeFtNumAcountMap.put(buyList.get(i - 1), i + "");
             }
+
+            if (IS_SC) {
+
+
+                if (null != buyNumAcountMap.get(buyList.get(i))) {
+                    int integer = buyNumAcountMap.get(buyList.get(i));
+
+                    if (!ScLastCTrem.equals(ScCurrentCTrem)) {
+                        integer = integer + 1;
+                        if (integer > 6) {
+                            integer = 0;
+                        }
+                    }
+                    buyNumAcountMap.put(buyList.get(i), integer);
+                    buyNumAcountMap.put(buyList.get(i - 1), integer);
+
+                    buyPositionAcountMap.put(buyList.get(i - 1), integer);
+                    Log.d(TAG, "buyNum: " + buyList.get(i));
+                    Log.d(TAG, "buyNum: " + buyList.get(i-1));
+                    Log.d(TAG, "buyNum: " + integer);
+                } else {
+                    buyNumAcountMap.put(buyList.get(i), 0);
+                    buyNumAcountMap.put(buyList.get(i - 1), 0);
+
+                    Log.d(TAG, "buyNum: " + buyList.get(i));
+                    Log.d(TAG, "buyNum: " + buyList.get(i-1));
+                }
+            } else {
+
+
+                if (null != buyFtNumAcountMap.get(buyList.get(i))) {
+                    int integer = buyFtNumAcountMap.get(buyList.get(i));
+                    if (!FtLastCTrem.equals(FtCurrentCTrem)) {
+                        integer = integer + 1;
+                        if (integer > 6) {
+                            integer = 0;
+                        }
+                    }
+                    buyFtNumAcountMap.put(buyList.get(i), integer);
+                    buyFtNumAcountMap.put(buyList.get(i - 1), integer);
+
+                    buyFtPositionAcountMap.put(buyList.get(i - 1), integer);
+                    Log.d(TAG, "buyFtNum: " + buyList.get(i));
+                    Log.d(TAG, "buyFtNum: " + buyList.get(i-1));
+                    Log.d(TAG, "buyFtNum: " + integer);
+                } else {
+                    buyFtNumAcountMap.put(buyList.get(i), 0);
+                    buyFtNumAcountMap.put(buyList.get(i - 1), 0);
+
+                    Log.d(TAG, "buyFtNum: " + buyList.get(i));
+                    Log.d(TAG, "buyFtNum: " + buyList.get(i-1));
+                }
+            }
+
         }
 
     }
@@ -381,10 +525,24 @@ public class WA_YundaFragment extends WA_BaseFragment {
 //
                 int position = 0;
                 if (isPosition) {
-                    position = buyPositionAcountMap.get(buyPositionList.get(i));
+                    if (IS_SC) {
+                        position = buyPositionAcountMap.get(buyPositionList.get(i));
+                    } else {
+                        position = buyFtPositionAcountMap.get(buyPositionList.get(i));
+                    }
+                    Log.d(TAG, "getMethod: " + buyPositionList.get(i));
                 } else {
-                    position = buyNumAcountMap.get(buyPositionList.get(i));
+                    if (IS_SC) {
+                        position = buyNumAcountMap.get(buyPositionList.get(i));
+                    } else {
+                        position = buyFtNumAcountMap.get(buyPositionList.get(i));
+
+                    }
+                    Log.d(TAG, "getMethod: " + buyPositionList.get(i));
                 }
+                Log.d(TAG, "getMethod: " + position);
+
+
                 int money = fiboArr[position];
                 if (i % 2 == 0) {
                     money = money * 2;
@@ -464,11 +622,11 @@ public class WA_YundaFragment extends WA_BaseFragment {
             mAmount = fiboArr[anInt - sameInt] * ConstantUtils.getOriginAmount() + "";
         } catch (Exception e) {
 
-//            Log.e(TAG, "exception!!!: anInt" + anInt);
-//            Log.e(TAG, "sameInt!!!: sameInt" + sameInt);
-//            Log.e(TAG, "exception!!!: typeBlank" + typeBlank);
-//             Log.e(TAG, "exception!!!: anInt" + anInt);
-//            Log.e(TAG, "exception!!!: typeBlank" + typeBlank);
+//            Log.d(TAG, "exception!!!: anInt" + anInt);
+//            Log.d(TAG, "sameInt!!!: sameInt" + sameInt);
+//            Log.d(TAG, "exception!!!: typeBlank" + typeBlank);
+//             Log.d(TAG, "exception!!!: anInt" + anInt);
+//            Log.d(TAG, "exception!!!: typeBlank" + typeBlank);
             mAmount = "";
         }
         return mAmount;
