@@ -472,7 +472,6 @@ public class WA_YundaFragment extends WA_BaseFragment {
                     buyNumAcountMap.put(buyList.get(i), integer);
                     buyNumAcountMap.put(buyList.get(i - 1), integer);
 
-                    buyPositionAcountMap.put(buyList.get(i - 1), integer);
                     Log.d(TAG, "buyNum: " + buyList.get(i));
                     Log.d(TAG, "buyNum: " + buyList.get(i-1));
                     Log.d(TAG, "buyNum: " + integer);
