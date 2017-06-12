@@ -24,9 +24,18 @@ function goSc(){
   var money = document.getElementById('userinfo_money');
   localMethod.JI_LOG(money.innerHTML);
   setTimeout(function(){
-    var oneTenBtn = document.getElementById('cate_menus_50').getElementsByTagName("a")[1];
-    oneTenBtn.click();
-  },500);
+      var oneTenBtn = document.getElementById('cate_menus_50').getElementsByTagName("a")[1];
+      oneTenBtn.click();
+
+      setTimeout(function(){
+          var itema = document.getElementById('framePage').contentWindow.document.getElementsByTagName('input');
+          localMethod.JI_showToast("itema:"+itema.length);
+          if(itema.length<100){
+            goSc();
+          }
+      },1500);
+  },1000);
+
 }
 
 function goFt(){
@@ -35,8 +44,16 @@ function goFt(){
   var money = document.getElementById('userinfo_money');
   localMethod.JI_LOG(money.innerHTML);
   setTimeout(function(){
-    var oneTenBtn = document.getElementById('cate_menus_55').getElementsByTagName("a")[1];
-    oneTenBtn.click();
+      var oneTenBtn = document.getElementById('cate_menus_55').getElementsByTagName("a")[1];
+      oneTenBtn.click();
+
+      setTimeout(function(){
+          var itema = document.getElementById('framePage').contentWindow.document.getElementsByTagName('input');
+          localMethod.JI_showToast("itema:"+itema.length);
+          if(itema.length<100){
+            goFt();
+          }
+      },1500);
   },500);
 }
 
