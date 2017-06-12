@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import com.example.webtest.R;
 import com.example.webtest.Utils.ConstantUtils;
+import com.example.webtest.Utils.DateUtils;
 import com.example.webtest.Utils.UIUtils;
 import com.example.webtest.io.WA_Parameters;
 
@@ -408,12 +409,9 @@ public class WA_YundaFragment extends WA_BaseFragment {
             if (IS_SC) {
                 if (null != buyPositionAcountMap.get(buyList.get(i))) {
                     int integer = buyPositionAcountMap.get(buyList.get(i));
-                    if (!ScLastCTrem.equals(ScCurrentCTrem)) {
-                        integer = integer + 1;
-                        if (integer > 6) {
-                            integer = 0;
-                        }
-                    }
+//                    if (!ScLastCTrem.equals(ScCurrentCTrem)) {
+//                    }
+                    integer = getInteger(integer);
                     buyPositionAcountMap.put(buyList.get(i), integer);
                     buyPositionAcountMap.put(buyList.get(i - 1), integer);
                     Log.d(TAG, "buyPosition: " + buyList.get(i));
@@ -429,12 +427,9 @@ public class WA_YundaFragment extends WA_BaseFragment {
             } else {
                 if (null != buyFtPositionAcountMap.get(buyList.get(i))) {
                     int integer = buyFtPositionAcountMap.get(buyList.get(i));
-                    if (!FtLastCTrem.equals(FtCurrentCTrem)) {
-                        integer = integer + 1;
-                        if (integer > 6) {
-                            integer = 0;
-                        }
-                    }
+//                    if (!FtLastCTrem.equals(FtCurrentCTrem)) {
+//                    }
+                    integer = getInteger(integer);
 
                     buyFtPositionAcountMap.put(buyList.get(i), integer);
                     buyFtPositionAcountMap.put(buyList.get(i - 1), integer);
@@ -463,12 +458,9 @@ public class WA_YundaFragment extends WA_BaseFragment {
                 if (null != buyNumAcountMap.get(buyList.get(i))) {
                     int integer = buyNumAcountMap.get(buyList.get(i));
 
-                    if (!ScLastCTrem.equals(ScCurrentCTrem)) {
-                        integer = integer + 1;
-                        if (integer > 6) {
-                            integer = 0;
-                        }
-                    }
+//                    if (!ScLastCTrem.equals(ScCurrentCTrem)) {
+//                    }
+                    integer = getInteger(integer);
                     buyNumAcountMap.put(buyList.get(i), integer);
                     buyNumAcountMap.put(buyList.get(i - 1), integer);
 
@@ -487,12 +479,9 @@ public class WA_YundaFragment extends WA_BaseFragment {
 
                 if (null != buyFtNumAcountMap.get(buyList.get(i))) {
                     int integer = buyFtNumAcountMap.get(buyList.get(i));
-                    if (!FtLastCTrem.equals(FtCurrentCTrem)) {
-                        integer = integer + 1;
-                        if (integer > 6) {
-                            integer = 0;
-                        }
-                    }
+//                    if (!FtLastCTrem.equals(FtCurrentCTrem)) {
+//                    }
+                    integer = getInteger(integer);
                     buyFtNumAcountMap.put(buyList.get(i), integer);
                     buyFtNumAcountMap.put(buyList.get(i - 1), integer);
 
@@ -511,6 +500,18 @@ public class WA_YundaFragment extends WA_BaseFragment {
 
         }
 
+    }
+
+    private int getInteger(int integer) {
+        if ((IS_SC && DateUtils.isInRange(9, 10, 23, 59)) ||
+                (!IS_SC && (DateUtils.isInRange(13, 20, 23, 59))) ||
+                (!IS_SC && DateUtils.isInRange(0, 0, 4, 10))) {
+            integer = integer + 1;
+            if (integer > 6) {
+                integer = 0;
+            }
+        }
+        return integer;
     }
 
     private void getMethod(ArrayList<String> buylist, String amount, String time, boolean IS_AUTO, int typeBlank, int smarllerInts, boolean isPosition) {
@@ -551,7 +552,7 @@ public class WA_YundaFragment extends WA_BaseFragment {
                     }
                     Log.d(TAG, "getMethod: " + buyPositionList.get(i));
                 }
-                Log.d(TAG, "getMethod: " + position);
+                Log.d(TAG, "getMethodPosition: " + position);
 
 
                 int money = fiboArr[position];

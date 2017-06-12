@@ -1573,7 +1573,7 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
                             }
                         }, 3000);
                     } else if (!IS_SC) {
-                        if (DateUtils.isInRange(13, 20, 23, 59) && DateUtils.isInRange(0, 0, 4, 10)) {
+                        if (DateUtils.isInRange(13, 20, 23, 59) || DateUtils.isInRange(0, 0, 4, 10)) {
                             IS_GSON_RETRY = true;
                             onClick(btnCaculate);
                             UIUtils.postDelayed(new Runnable() {
