@@ -189,6 +189,8 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
     private String learnResultStr4;
     private String amount;
     private String cTerm;
+    private boolean IS_GSON_RETRY = false;
+
 
     public int[] getNumMax() {
         return numMax;
@@ -711,7 +713,15 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
                 } else {
                     none20 = "1";
                 }
-                if (SelectedLimitPosition != -1) {
+                if (mList.size() == 0) {
+                    UIUtils.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            getDataFromNet();
+                        }
+                    }, 3000);
+
+                } else if (SelectedLimitPosition != -1) {
                     getSelectedResult(SelectedLimitPosition);
                     return;
                 }
@@ -1530,7 +1540,6 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
     }
 
     private void getDataFromNet() {
-
         resultStr = "";
         learnResultStr = "";
         learnResultStr2 = "";
@@ -1548,31 +1557,38 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
                 resetList();
                 try {
                     gsonParse(response);
+                    IS_GSON_RETRY = false;
                     Toast.makeText(getActivity(), "成功", Toast.LENGTH_LONG).show();
-
+                    afterGetData();
                 } catch (Exception e) {
                     Toast.makeText(getActivity(), "请求频率过高", Toast.LENGTH_LONG).show();
                     CacheUtils.putCache(getActivity(), Url, "");
+                    if (IS_SC && DateUtils.isInRange(9, 10, 23, 59)) {
+                        IS_GSON_RETRY = true;
+                        onClick(btnCaculate);
+                        UIUtils.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                getDataFromNet();
+                            }
+                        }, 3000);
+                    } else if (!IS_SC) {
+                        if (DateUtils.isInRange(13, 20, 23, 59) && DateUtils.isInRange(0, 0, 4, 10)) {
+                            IS_GSON_RETRY = true;
+                            onClick(btnCaculate);
+                            UIUtils.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    getDataFromNet();
+                                }
+                            }, 3000);
+                        }
+                    }
+                    afterGetData();
+
                 }
 
 
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        for (int i = 0; i < urlsList.size(); i++) {
-                            Message message = myHandler.obtainMessage();
-                            message.what = i;
-                            if (TextUtils.isEmpty(CacheUtils.getCache(getActivity(), urlsList.get(i)))) {
-                                try {
-                                    Thread.sleep(1200);
-                                } catch (InterruptedException e) {
-                                    e.printStackTrace();
-                                }
-                            }
-                            myHandler.sendEmptyMessage(i);
-                        }
-                    }
-                }).start();
 
 
             }
@@ -1593,6 +1609,28 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
         });
 
 
+    }
+
+    private void afterGetData() {
+        if (!IS_GSON_RETRY) {
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    for (int i = 0; i < urlsList.size(); i++) {
+                        Message message = myHandler.obtainMessage();
+                        message.what = i;
+                        if (TextUtils.isEmpty(CacheUtils.getCache(getActivity(), urlsList.get(i)))) {
+                            try {
+                                Thread.sleep(1200);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        myHandler.sendEmptyMessage(i);
+                    }
+                }
+            }).start();
+        }
     }
 
     private void refreshData(final String mUrl, final int mI) {
@@ -1914,7 +1952,7 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
         setDealData(0,ConstantValue.autoSame20 + "", ConstantValue.autoSame15 + "", ConstantValue.autoSame10 + "", false, ConstantValue.ClassCoordinate);
 //        delayDeal(ConstantValue.autoBlank20, ConstantValue.autoSame20 + ConstantUtils.getFabInt(IS_SC, false, ConstantValue.TYPE_BLANK_20), ConstantValue.TYPE_BLANK_20, 0);
 //        delayDeal(ConstantValue.autoBlank15, ConstantValue.autoSame15 + ConstantUtils.getFabInt(IS_SC, false, ConstantValue.TYPE_BLANK_15), ConstantValue.TYPE_BLANK_15, 16);
-        delayDeal(ConstantValue.autoBlank10, ConstantValue.autoSame10 + ConstantUtils.getFabInt(IS_SC, false, ConstantValue.TYPE_BLANK_10), ConstantValue.TYPE_BLANK_10, 32);
+        delayDeal(ConstantValue.autoBlank10, ConstantValue.autoSame10 + ConstantUtils.getFabInt(IS_SC, false, ConstantValue.TYPE_BLANK_10), ConstantValue.TYPE_BLANK_10, 2);
 //        setDealData(48, ConstantValue.autoCustomSame20 + "", ConstantValue.autoCustomSame15 + "", ConstantValue.autoCustomSame10 + "", true, ConstantValue.ClassCoordinate);
 //        delayDeal(ConstantValue.autoBlank20, ConstantValue.autoCustomSame20 + ConstantUtils.getFabInt(IS_SC, true, ConstantValue.TYPE_BLANK_20), ConstantValue.TYPE_BLANK_20, 50);
 //        delayDeal(ConstantValue.autoBlank15, ConstantValue.autoCustomSame15 + ConstantUtils.getFabInt(IS_SC, true, ConstantValue.TYPE_BLANK_15), ConstantValue.TYPE_BLANK_15, 66);
@@ -1929,7 +1967,7 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
                     FtLastCTrem = FtCurrentCTrem;
                 }
             }
-        }, 96000);
+        }, 32);
 
 //        setDealData(38);
 //        delayDeal(ConstantValue.autoBlank20, ConstantValue.autoSame20, ConstantValue.TYPE_BLANK_20, 40);
@@ -1994,6 +2032,15 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 
 
     private void dealType(final int time, int blank,final int same, final int blanktype) {
+        if (mList.size() < 1) {
+            UIUtils.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    getDataFromNet();
+                }
+            }, 3000);
+            return;
+        }
         cTerm = mList.get(0).getCTerm();
         etBlank.setText(blank + "");
         etSame.setText(same + "");
