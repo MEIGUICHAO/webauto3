@@ -375,7 +375,7 @@
             <WebView
                 android:id="@+id/wa_webview_list"
                 android:layout_width="fill_parent"
-                android:layout_height="600dp" />
+                android:layout_height="400dp" />
         </LinearLayout>
     </com.example.webtest.widget.MyScrollView>
 
